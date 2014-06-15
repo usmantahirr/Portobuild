@@ -1,10 +1,36 @@
+@mixin rotate ($deg:30deg) {
+    -mz-transform: rotate($deg);
+    -webkit-transform: rotate($deg); /* Chrome, Safari, Opera */
+    transform: rotate($deg);
+}
+
 .index {
-    background: red;
     .heroUnit {
+        background: #27ae60;
+        text-align: center;
+        height: 739px;
+        position: relative;
+        
+        .bannerImage {
+            width: 90%;
+            margin: 0 auto;
+            position: absolute;
+            left: 5%;
+            bottom: 1px;
+        }
         .title {
-            font-size: 4em;
-            font-weight: lighter;
-            text-align: center;
+            padding-top: 2%;
+            font-size: 4em;            
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            font-weight:  100;
+        }
+        .subtitle {
+            font-family: 'Bad Script', cursive;
+            margin: 20px 0 5px 0;
+            font-size: 2.5em;
+            color: white;
+            @include rotate(-6deg);
         }
     }
 }

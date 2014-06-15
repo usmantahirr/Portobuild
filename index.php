@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Portobuild - Login</title>
+        <title>Portobuild</title>
         <link rel="stylesheet" href="css/app.css" />
         <script src="bower_components/modernizr/modernizr.js"></script>
     </head>
@@ -14,8 +14,12 @@
         <?php require 'php/navigation.php'; ?>
         
         <section class="index">
-            <div class="heroUnit row">
+            <div class="heroUnit">
                 <div class="title">Portfolio Design</div>
+                <div class="subtitle">The Visual Way</div>
+                <div class="bannerImage">
+                    <img src="images/homePage/homeBanner.png" alt="Banner Image">
+                </div>
             </div>
         </section>
 

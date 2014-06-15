@@ -16,7 +16,21 @@
             <div class="loginPanel">
                 <form data-abide>
                     <fieldset>
-                        <legend>Login Details</legend>
+                        <legend>Signup</legend>
+                        
+                            <div class="row">
+                                <div class="large-6 columns">
+                                    <label>First Name
+                                        <input type="text" placeholder="First Name" />
+                                    </label>
+                                </div>
+                                <div class="large-6 columns">
+                                    <label>Last Name
+                                        <input type="text" placeholder="Last Name" />
+                                    </label>
+                                </div>
+                            </div>
+         
                         <div class="email-field">
                             <label>Email <small>required</small>
                                 <input type="email" placeholder="name@vender.com" pattern="email" required>
@@ -33,7 +47,7 @@
                         
                         <input type="checkbox" name="remember" value="remember"> Remember Me
                         <div class="right">
-                            <a href="signup.php" class="button small">Signup</a>
+                            <a href="#" class="button small">Signup</a>
                             <a href="#" type="submit" class="button small">Login</a>
                         </div>
                         

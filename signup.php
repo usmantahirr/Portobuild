@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="css/foundation-datepicker.css" />
     <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
     <script src="bower_components/modernizr/modernizr.js"></script>
+    
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+    
 </head>
 
 <body>
@@ -19,7 +22,7 @@
         <form data-abide>
            <div class="row fullWidth">
                 <div class="large-12 columns">
-                    <h1>Signup</h1>
+                    <h1>You are one step away from being "Awesome"</h1>
                 </div>
            </div>
            
@@ -69,27 +72,27 @@
                             <label for="minRate" style="padding-left: 10px;">Hourly Rate </label>
                             <div class="large-6 columns">
                                 <div class="row collapse">                                    
-                                    <div class="small-3 columns">
+                                    <div class="small-4 columns">
                                         <span class="prefix">Min</span>
                                     </div>
-                                    <div class="small-8 columns">
+                                    <div class="small-5 columns">
                                         <input type="number" id="minRate" pattern="number" placeholder="Rate" />
                                     </div>
-                                    <div class="small-1 columns">
-                                        <span class="postfix">$</span>
+                                    <div class="small-3 columns">
+                                        <span class="postfix">USD</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="large-6 columns">
                                 <div class="row collapse">
-                                    <div class="small-3 columns">
+                                    <div class="small-4 columns">
                                         <span class="prefix">Max</span>
                                     </div>
-                                    <div class="small-8 columns">
+                                    <div class="small-5 columns">
                                         <input type="number" pattern="number" placeholder="Rate" />
                                     </div>
-                                    <div class="small-1 columns">
-                                        <span class="postfix">$</span>
+                                    <div class="small-3 columns">
+                                        <span class="postfix">USD</span>
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +100,7 @@
                         
                         <!-- Work Timings -->
                         <div class="row">
-                            <label for="time" style="padding-left: 10px;">Work Timings (GMT-00)</label>
+                            <label for="time" style="padding-left: 10px;">Work Timings <a href="http://wwp.greenwichmeantime.com/world-clock/">(GMT + 0:00)</a></label>
                             <div class="large-6 columns">
                                 <div class="row collapse">                                    
                                     <div class="small-4 columns">
@@ -127,8 +130,8 @@
                                 <input type="date" id="birthDate" pattern="number" />
                             </div>
                             <div class="large-6 columns">
-                                <label for="location" >Currunt Location</label>
-                                <input type="text" id="location"/>
+                                <label for="pac-input" >Currunt Location</label>
+                                <input id="pac-input" class="controls" type="text" placeholder="Search Box">
                             </div>
                         </div> <!-- Birth and Location Info -->
                     </fieldset>
@@ -136,7 +139,9 @@
             </div>
             <!-- MAP -->
             <div class="row fullWidth">
-                <div id="map" style="height: 200px;"></div>
+                <div class="large-12 columns">
+                    <div id="map-canvas" style="height: 200px;margin-bottom: 20px;"></div>
+                </div>
             </div>
             <!-- Continue Button -->
             <div class="row fullWidth">
@@ -149,9 +154,11 @@
             </div>
         </form>
     </div>
-
+    
+  
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/foundation/js/foundation.min.js"></script>
+    <script src="js/mapScript.js"></script>
     <script src="js/app.js"></script>
     
 </body>

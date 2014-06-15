@@ -11,6 +11,7 @@
         <!-- Right Nav Section -->
         <ul class="right">
             <li><a href="trends.php">Trends</a></li>
+            <li><a href="signup.php">Signup</a></li>
             <li><a href="login.php">Login</a></li>
         </ul>
     </section>

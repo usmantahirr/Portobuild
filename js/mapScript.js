@@ -54,7 +54,7 @@ function initialize() {
             markers.push(marker);
             bounds.extend(place.geometry.location);
         }
-        map.fitBounds(bounds);
+        map.fitBounds(bounds); 
         map.setZoom(13);
     });
     // [END region_getplaces]

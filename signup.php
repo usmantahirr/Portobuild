@@ -19,7 +19,7 @@
     <?php require 'php/navigation.php'; ?>
 
     <div class="signUpForm">
-        <form data-abide>
+        <form data-abide action="themeSelector.php" name="signupForm">
            <div class="row fullWidth">
                 <div class="large-12 columns">
                     <h1>You are one step away from being "Awesome"</h1>
@@ -148,14 +148,16 @@
                 <div class="large-12 columns">
                     <!-- buttons -->
                     <div class="right">
-                        <a href="#" class="button small">Continue & Login</a>
+                        <a href="javascript: submitform()" class="button small">Continue & Login</a>
                     </div>
                 </div>
             </div>
         </form>
     </div>
     
-  
+    <script type="text/javascript">
+        function submitform() { document.signupForm.submit(); }
+    </script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script src="js/mapScript.js"></script>

@@ -1,0 +1,120 @@
+html {
+    height: 100%; /* <------------ */
+}
+body {
+    height: 100%;
+}
+#checkboxes  {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+#themeSelectionPage {
+    background: #27ae60;
+    height: auto;
+    
+    h2 {
+        font-size: 3em;
+        font-weight: 300;
+        text-shadow: 2px 1.5px 1px rgba(47, 188, 111, 1);
+        @media #{$small-only} {
+            font-size: 2em;
+        }
+    }
+    
+    .themeSelection {
+        width: 67%;
+        height: 100%;
+        margin: 10% auto;
+        position: relative;
+
+        .themeContainer {
+            width: 100%;
+            @media #{$medium-up} {
+                position:relative;
+                .theme {
+                    width: 31%;
+                }
+                .theme:first-child {
+                    left: 0px;
+                    position: absolute;
+                }
+                .theme:nth-child(2) {
+                    left: 34%;
+                    position: absolute;
+                }
+                .theme:last-child {
+                    right: 0px;
+                    position: absolute;
+                }
+            }
+        
+            @media #{$small-only} {
+                .theme {
+                    width: 280px;
+                    height: 280px;
+                    float:right;
+                    margin: 3%;
+                }
+            }
+            
+            /* entire container, keeps perspective */
+            .flip-container {
+                perspective: 1000;
+            }
+
+            /* flip the pane when hovered */
+            .flip-container:hover .flipper, .flip-container.hover .flipper {
+                transform: rotateY(180deg);
+                -webkit-transform: rotateY(180deg);
+                -mz-transform: rotateY(180deg);
+            }
+
+            /* flip speed goes here */
+            .flipper {
+                transition: 0.6s;
+                transform-style: preserve-3d;
+                position: relative;
+            }
+
+            /* hide back of pane during swap */
+            .front, .back {
+                -webkit-backface-visibility: hidden;
+                -mz-backface-visibility: hidden;
+                backface-visibility: hidden;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            /* front pane, placed above back */
+            .front {
+                z-index: 2;
+            }
+
+            /* back, initially hidden pane */
+            .back {
+                -webkit-transform: rotateY(180deg);
+                -mz-transform: rotateY(180deg);
+                transform: rotateY(180deg);
+            }
+        }
+        
+        #proceedThemeSelection {
+            @media #{$small-only} {
+                right: 10px;
+                position: absolute;
+                margin-top: 900px;
+            }
+            @media #{$medium-up} {
+                right: 0px;
+                position: absolute;
+                margin-top: 33%;
+            }
+        }
+        .clearFix {
+            clear: both;
+        }
+
+    }
+}

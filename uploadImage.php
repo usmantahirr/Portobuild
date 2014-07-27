@@ -11,10 +11,27 @@
         <script src="bower_components/modernizr/modernizr.js"></script>
     </head>
 
-    <body id="createAlbumContainer">
+    <body id="imageUploaderContainer">
+    
+        <form action="/file-upload" class="dropzone" id="my-awesome-dropzone">
+            <div class="fallback">
+                <input name="file" type="file" multiple />
+            </div>
+        </form>
+        
+       <section class="uploadContainer">
+           <div class="uploadButtonContainer">
+               
+           </div>
+           <div class="uploadedImageContainer">
+               
+           </div>
+       </section>
+       
         <script>
             function submitform() { document.themeSelectionForm.submit(); }
         </script>
+        <script src="js/dropzone.js"></script>
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src="bower_components/foundation/js/foundation.min.js"></script>
         <script src="js/app.js"></script>

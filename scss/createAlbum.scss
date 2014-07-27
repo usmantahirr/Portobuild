@@ -8,6 +8,20 @@
         position: absolute;
         top: 28%;
         left: 40%;
+        @media #{$small-only} {
+            width: 250px;
+            height: 200px;
+            position: absolute;
+            top: 20%;
+            left: 12%;
+        }
+        @media #{$medium-only} {
+            width: 250px;
+            height: 200px;
+            position: absolute;
+            top: 24%;
+            left: 34%;
+        }
         #formArea{
             #submitButton{
                 margin: 0 auto;

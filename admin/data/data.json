@@ -1,0 +1,22 @@
+[
+  {
+    "name":"Art",
+    "shortname":"art",
+    "link": "#anyLink"
+  },
+  {
+    "name":"Personal",
+    "shortname":"personal",
+    "link": "#perLink"  
+  },
+  {
+    "name":"Public",
+    "shortname":"pub",
+    "link": "#pubLink"  
+  },
+    {
+    "name":"Something",
+    "shortname":"pub",
+    "link": "#MyLink"  
+    }
+]

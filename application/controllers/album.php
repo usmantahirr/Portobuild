@@ -47,6 +47,7 @@ class Album extends MY_Controller
     {
       $this->load->model('album_model');
       $this->load->model('image_model');
+      $this->load->model('feed_model');
     }
   }
   
@@ -118,6 +119,8 @@ class Album extends MY_Controller
     $data['is_admin'] = $this->is_admin();
     $session_data = $this->get_user_data();
     $data['email_address'] = $session_data['email_address'];
+    $data['feed_id'] = $this->session->userdata('feed_id');
+    //echo $this->feed_model->get_feed_uuid(3);
     
     $this->load->view('album/index', $data);
   }

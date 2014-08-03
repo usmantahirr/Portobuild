@@ -133,6 +133,25 @@ class Api extends MY_Controller
         break;
     }
   }
+  public function myfeed_by_username($type, $username)
+  {
+    $feed_uuid=$this->feed_model->get_feed_uuid_by_username($username);
+    header('Access-Control-Allow-Origin: *');
+    switch (strtolower($type))
+    {
+      case 'json':
+        header('Content-Type: text/javascript; charset=utf8');
+        $this->output_my_json_feed($feed_uuid);
+        break;
+      case 'xml':
+        header("Content-Type: application/xhtml+xml; charset=utf-8");
+        $this->output_my_xml_feed($feed_uuid);
+        break;
+      default:
+        throw new Exception('This option is not supported.');
+        break;
+    }
+  }
   
   /**
    * Displays json/xml feed for singular albums.

@@ -1,0 +1,32 @@
+[
+	{
+		"name": "some",
+		"sr":"1",
+	  	"src":"gallery/wall (1).jpg"
+	},
+	{
+		"name": "some2",
+		"sr":"2",
+	  	"src":"gallery/wall (2).jpg"
+	},
+	{
+		"name": "some3",
+		"sr":"3",
+	  	"src":"gallery/wall (3).jpg"
+	},	
+	{
+		"name": "some4",
+		"sr":"4",
+	  	"src":"gallery/wall (4).jpg"
+	},
+	{
+		"name": "some5",
+		"sr":"5",
+	  	"src":"gallery/wall (5).jpg"
+	},	
+	{
+		"name": "some6",
+		"sr":"6",
+	  	"src":"gallery/wall (6).jpg"
+	}
+]

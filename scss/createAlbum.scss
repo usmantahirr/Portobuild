@@ -1,0 +1,45 @@
+#createAlbumContainer {
+    background: url("../images/createAlbum/bg.jpg");
+    background-position: center;
+    .createAlbumSection {
+        width: 250px;
+        height: 200px;
+        margin: 0 auto;
+        position: absolute;
+        top: 28%;
+        left: 40%;
+        @media #{$small-only} {
+            width: 250px;
+            height: 200px;
+            position: absolute;
+            top: 20%;
+            left: 12%;
+        }
+        @media #{$medium-only} {
+            width: 250px;
+            height: 200px;
+            position: absolute;
+            top: 24%;
+            left: 34%;
+        }
+        #formArea{
+            #submitButton{
+                margin: 0 auto;
+                .button{ width: 250px; }
+            }
+            #nameContainer{
+                width: 250px;
+                height: 100px;
+                background: white;
+                border: 1px solid grey;
+                opacity: 0.75;
+                margin-bottom: 10px;
+                
+                label {
+                    width: 230px;
+                    margin: 10px auto;
+                }
+            }
+        }
+    }
+} 

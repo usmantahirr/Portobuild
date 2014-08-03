@@ -1,31 +1,40 @@
-# PortoBuild -- Final Year Project
-Follow following for a quick Start
-## Foundation libsass template
+Gallery CMS
+===========
 
-This is a template to start your own project that uses Grunt and libsass!
+Info
+----
 
-## Requirements
+GalleryCMS is a free image gallery CMS based on the CodeIgniter 2.1 framework. It is an easy-to-use image gallery CMS that generates JSON and XML feeds that image galleries can consume.
 
-You'll need to have the following items installed before continuing.
+Features
+--------
 
-  * [Node.js](http://nodejs.org): Use the installer provided on the NodeJS website.
-  * [Grunt](http://gruntjs.com/): Run `[sudo] npm install -g grunt-cli`
-  * [Bower](http://bower.io): Run `[sudo] npm install -g bower`
+ + Multiple image uploader
+ + Drag and drop ordering
+ + User management
+ + Feed organizer
 
-## Quickstart
+Dependencies
+------------
 
-```bash
-git clone git@github.com:zurb/foundation-libsass-template.git
-npm install && bower install
-```
+ + PHP >= 5.2
+ + MySQL Database
+ + GD2 Library enabled
 
-While you're working on your project, run:
 
-`grunt`
+Installation
+------------
 
-And you're set!
+1. Create a MySQL database.
 
-## Directory Structure
+2. Edit application/config/database.php and enter your database credentials.
 
-  * `scss/_settings.scss`: Foundation configuration settings go in here
-  * `scss/app.scss`: Application styles go here
+3. Upload to your webserver.
+
+4. Navigate to the URL of which you uploaded the application and complete the registration. Creating your account will generate all of the database tables and finish the installation.
+
+
+Known Issues
+------------
+
+PNG Uploads fail. This is a known CodeIgniter 2.1 issue.

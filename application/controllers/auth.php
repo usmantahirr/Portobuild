@@ -48,6 +48,7 @@ class Auth extends MY_Controller
     }
     
     $this->load->model('user_model');
+    $this->load->model('feed_model');
   }
   
   /**
@@ -174,6 +175,23 @@ class Auth extends MY_Controller
       $this->create_login_session($user);
       
       $this->session->set_flashdata('flash_message', "User successfully created. You are now logged in");
+
+
+      //creating JSON feed
+      $session_data = $this->get_user_data();
+      $feed_uuid=$this->create_uuid();
+        $now = date('Y-m-d H:i:s');
+        $data = array(
+            'name' => $user_data['username'], 
+            'created_by' => $user_id, 
+            'uuid' => $feed_uuid,
+            'created_at' => $now);
+        
+        $feed_id = $this->feed_model->create($data);
+        $this->session->set_userdata('feed_id', $feed_id);
+        $this->session->set_userdata('feed_uuid', $feed_uuid);
+
+        $this->session->set_flashdata('flash_message', "Successfully created feed.");
 
     
     	//load view when successfully registered on site and records are being entered in db.

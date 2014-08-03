@@ -68,6 +68,13 @@ class Feed_model extends MY_Model
     $q = $this->db->get_where($this->table_name, array('uuid' => $uuid));
     return $q->row();
   }
+  public function get_feed_uuid_by_username($username){
+    $q=$this->db->query("select uuid from feed where name='".$username."'");
+    foreach ($q->result() as $row)
+    {
+       return $row->uuid;
+    }
+  }
   
   /**
    * Get feed albums by feed id.

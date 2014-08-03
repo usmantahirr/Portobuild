@@ -7,7 +7,7 @@
 <div class="page-header">
   <h1>Albums</h1>
 </div>
-
+<a class="btn btn-primary" href="<?php echo site_url('feed/edit/'.$feed_id); ?>">include albums to portfolio</a>
 <?php if (isset($albums)): ?>
 <table class="table table-striped table-bordered">
   <thead>

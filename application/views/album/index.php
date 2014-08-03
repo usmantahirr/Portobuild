@@ -1,100 +1,110 @@
-<?php $this->load->view('inc/header'); ?>
+<?php $this->load->view('inc/admin_header'); ?>
+	<body>
+		<section id="side-bar" class="pull-left">
+			<span class="side-bar-toggle" data-toggle="1"> <span class="glyphicon glyphicon-th-list"></span> </span>
+			<div id="user-info" ng-controller = "UserController">
+				<img alt="Profile Picture" src="<?php echo base_url(); ?>_lib/usman_tahir.png" class="img-circle profile-picture">
+				<h2 class="profile-heading">Usman Tahir</h2>
+				<button class="btn btn-primary">View Public Profile</button>
+			</div>
 
-<?php if (isset($flash)): ?>
-<div class="alert alert-success"><a class="close" data-dismiss="alert">x</a><strong><?php echo $flash; ?></strong></div>
-<?php endif; ?>
+			<nav id="main-nav">
+				<ul>
+					<li><span class="glyphicon glyphicon-home" ></span><a href="#"> Home</a></li>
+					<li class="active"><span class="glyphicon glyphicon-picture" ></span><a href="#"> Portfolio</a></li>
+					
+					<div>
+						<ul class="gallery-menu">
+							<li class="galleries" ng-repeat="item in navList">
+								<a href="{{item.link}}"> Album</a>
+							</li>
+						</ul>
+					</div>
+					<li><span class="glyphicon glyphicon-cog" ></span><a href="#"> Settings</a></li>
+					<ul>
+						<li class="galleries">
+							<a href="canvas/">Canvas</a>
+						</li>
+					</ul>
+				</ul>
+			</nav>
+		</section>
+		<section id="main-container">
+			<section id="titlebar" class="row">
+				
+				<a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			    </a>
+			    
+				<div class="col-md-4">
+					<div class="input-group">
+					    <input type="text" class="form-control" placeholder="Search">
+					    <span class="input-group-btn">
+					    	<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+					    </span>
+				    </div><!-- /input-group -->
+			    </div> <!-- Search Bar Div end -->
+				<div class="pull-left">
+				  	<button class="btn btn-default" data-toggle="modal" data-target="#searchFilter">Filter Search</button>
+					<div class="modal fade" id="searchFilter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h3>Apply Search Filters</h3>
+								</div>
+								<div class="modal-body">
+									<div class="searchFilters">
+										<label for="gendre">Gendre</label>
+										<select name="gendre" id="gendreDropDown">
+											<option value="male">Male</option>
+						  					<option value="female">Female</option>
+						  					<option value="Other">Other</option>
+										</select>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button class="btn btn-primary">Search with Filters</button>
+									<button class="btn btn-default" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
 
-<div class="page-header">
-  <h1>Albums</h1>
-</div>
-<a class="btn btn-primary" href="<?php echo site_url('feed/edit/'.$feed_id); ?>">include albums to portfolio</a>
-<?php if (isset($albums)): ?>
-<table class="table table-striped table-bordered">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <?php if ($is_admin == TRUE): ?>
-      <th width="120">Owner</th>
-      <?php endif; ?>
-      <th width="120">Created</th>
-      <th width="120">Updated</th>
-      <th width="70">Photos</th>
-      <th width="140"><a class="btn btn-primary" href="<?php echo site_url("album/create"); ?>">Create new album</a></th>
-    </tr>
-  </thead>
-  <tbody>
-  <?php foreach ($albums as $album): ?>
-    <tr>
-      <td><a href="<?php echo site_url("album/images/" . $album['id']); ?>"><?php echo $album['name']; ?></a>
-        <?php $images = $album['images']; ?>
-        <?php if (isset($images) && ! empty($images)): ?>
-        <ul class="mini-image-set">
-          <?php foreach ($images as $image): ?>
-          <li>
-            <a href="<?php echo site_url("album/images/" . $album['id']); ?>"><img src="<?php echo base_url() . 'uploads/' . $image->raw_name . '_thumb' . $image->file_ext; ?>" alt="<?php echo $image->caption; ?>" /></a></li>
-          <?php endforeach; ?>
-        </ul>
-        <div class="clear"></div>
-        <?php endif; ?>
-      </td>
-      <?php if ($is_admin == TRUE): ?>
-        <?php if ($email_address == $album['user']): ?>
-        <td>Myself</td>
-        <?php else: ?>
-        <td><a href="<?php echo site_url('user/edit/' . $album['user_id']); ?>"><?php echo $album['user']; ?></a></td>
-        <?php endif; ?>
-      <?php endif; ?>
-      <td><?php echo date('M d, Y', strtotime($album['created_at'])); ?></td>
-      <td><?php echo date('M d, Y', strtotime($album['updated_at'])); ?></td>
-      <td><?php echo $album['total_images']; ?></td>
-      <td>
-        <div class="btn-group">
-          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-            Action
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="<?php echo site_url("album/edit/" . $album['id']); ?>"><i class="icon-pencil"></i> Rename</a></li>
-            <li><a href="<?php echo site_url("album/images/" . $album['id']); ?>"><i class="icon-picture"></i> Images</a></li>
-            <li><a href="<?php echo site_url("album/configure/" . $album['id']); ?>"><i class="icon-cog"></i> Configure</a></li>
-            <li><a class="album-delete-btn" href="#album-modal" data-toggle="modal" rel="<?php echo site_url("album/remove/" . $album['id']); ?>"><i class="icon-trash"></i> Delete</a></li>
-          </ul>
-        </div>
-      </td>
-    </tr>
-  <?php endforeach; ?>
-  </tbody>
-</table>
-<?php endif; ?>
+					<button type="button" class="btn btn-success"><span class="glyphicon glyphicon-inbox"></span> Messages</button>
+				</div>
+				<div class="pull-right" ng-controller = "UserController">
+					<span class="logout-msg">Hello <em><strong>Usman Tahir</strong></em></span>
+					<button class="btn btn-danger">Sign Out</button>
+				</div>
+				<div class="clearfix"></div>
+			</section>
+			<div id="data-container">
+				<a class="btn btn-primary" href="<?php echo site_url('feed/edit/' . $feed_id); ?>">Add albums to portfolio</a>
+				
+				<div class="gallery">
+					<a href="<?php echo base_url(); ?>_lib/wall(1).jpg" ng-repeat="item in galleryImages" rel="image_group" title="">
+						<div class="croped">
+						     <img alt="Image Thumbnail" src="<?php echo base_url(); ?>_lib/wall(1).jpg" class="thumb" />
+						</div>
+					</a>
+				</div>
+				
+			</div>
+		</section>
 
-<?php echo $this->pagination->create_links(); ?>
+		<div class="clearfix"></div>
 
-<div class="modal hide fade" id="album-modal">
-  <div class="modal-header">
-    <a class="close" data-dismiss="modal">×</a>
-    <h3>Delete Album</h3>
-  </div>
-  <div class="modal-body">
-    <p><strong>Are you sure you want to delete this album?</strong></p>
-    <p>This will permanently delete all photos in this album.</p>
-  </div>
-  <div class="modal-footer">
-    <a id="album-modal-delete-btn" href="#" class="btn btn-danger">Delete</a>
-    <a href="#" class="btn" data-dismiss="modal">Cancel</a>
-  </div>
-</div>
+		<!-- All JS Files -->
+		<script src="<?php echo base_url(); ?>_lib/jquery-1.11.0.min.js"></script>
+		<script src="<?php echo base_url(); ?>_lib/bootstrap/js/bootstrap.min.js"></script>
+		<script src="<?php echo base_url(); ?>js/navigationScript.js"></script>
 
-<script type="text/javascript">
-var deleteUrl;
-$(document).ready(function() {
-  $('.album-delete-btn').click(function() {
-    deleteUrl = $(this).attr('rel');
-  });
-  
-  $('#album-modal').on('show', function() {
-    $('#album-modal-delete-btn').attr('href', deleteUrl);
-  });
-});
-</script>
-
-<?php $this->load->view('inc/footer'); ?>
+		<!-- FancyBox Files -->
+		<script type="text/javascript" src="<?php echo base_url(); ?>_lib/fancyBox/jquery.mousewheel-3.0.6.pack.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>_lib/fancyBox/jquery.fancybox.pack.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>_lib/jquery.easing.1.3.js"></script>
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>_lib/fancyBox/jquery.fancybox.css" media="screen" />
+	</body>

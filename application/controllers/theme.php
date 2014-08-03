@@ -46,8 +46,11 @@ class Theme extends MY_Controller
       redirect('install');
       return;
     }
-    
+	$this->load->helper('file');
+    $this->load->helper('form');
     $this->load->model('user_model');
+    $this->load->model('portfolio_model');
+
   }
   
   /**
@@ -55,22 +58,61 @@ class Theme extends MY_Controller
    */
   public function selector()
   {
-    $this->load->helper('form');
+    
     
     $data = array();
     $data['email'] = '';
     $this->load->view('theme/selector', $data);
   }
   public function apply(){
-  	$this->load->helper('form');
-  	
-  	/* save the theme information to the database and make the 
-  	user directory in the server, copy theme files into it and 
-  	also save the paths in database, next time , after login, that theme will be executed
-  	and files will come from the path which is present in the user directory.
-  	*/
-  	redirect('album/create');
+  	$theme=$this->input->post('theme');
+    $zip = new ZipArchive;
+    if($theme=="theme1"){
+      if ($zip->open('./assests/theme1.zip') === TRUE) {
+          $zip->extractTo('./portfolios/');
+          $zip->close();
+          echo 'ok';
+      } else {
+          echo 'failed';
+      }
+      rename('./portfolios/theme1','./portfolios/'.$this->session->userdata('username'));
+    }
+    elseif ($theme=="theme2") {
+      if ($zip->open('./assests/theme2.zip') === TRUE) {
+          $zip->extractTo('./portfolios/');
+          $zip->close();
+          echo 'ok';
+      } else {
+          echo 'failed';
+      }
+      rename('./portfolios/theme2','./portfolios/'.$this->session->userdata('username'));
+    }
+    elseif ($theme=="theme3") {
+      if ($zip->open('./assests/theme3.zip') === TRUE) {
+          $zip->extractTo('./portfolios/');
+          $zip->close();
+          echo 'ok';
+      } else {
+          echo 'failed';
+      }
+      rename('./portfolios/theme3','./portfolios/'.$this->session->userdata('username'));
+    }
+    //mkdir('portfolios/khalid');
+    //copy ( './assests/theme1.zip', './portfolios/khalid/theme1.zip');
+   //  $zip = new ZipArchive;
+   //  if ($zip->open('./portfolios/khalid/theme1.zip') === TRUE) {
+   //      $zip->extractTo('./portfolios/khalid/');
+   //      $zip->close();
+   //      echo 'ok';
+   //  } else {
+   //      echo 'failed';
+   //  }
+  	// redirect('album/create');
   }
+  public function get_details($username){
+    echo $this->portfolio_model->get_portfolio_details_by_username($username);
+  }
+  
   
 
 }

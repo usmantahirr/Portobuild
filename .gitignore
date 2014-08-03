@@ -1,4 +1,7 @@
 *.DS_Store
+.htaccess
 /css/*
 /bower_components/*
 /node_modules/*
+/nbproject/*
+/uploads/

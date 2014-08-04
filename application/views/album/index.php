@@ -77,7 +77,7 @@
 				</div>
 				<div class="pull-right" ng-controller = "UserController">
 					<span class="logout-msg">Hello <em><strong>Usman Tahir</strong></em></span>
-					<button class="btn btn-danger">Sign Out</button>
+					<button class="btn btn-danger"><a href="<?php echo site_url("auth/logout"); ?>">Sign Out</a></button>
 				</div>
 				<div class="clearfix"></div>
 			</section>

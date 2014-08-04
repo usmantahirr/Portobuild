@@ -82,6 +82,13 @@ class Feed_model extends MY_Model
    * @param type $feed_id
    * @return type 
    */
+  public function get_feed_id_by_username($username){
+    $q=$this->db->query("select id from feed where name='".$username."'");
+    foreach ($q->result() as $row)
+    {
+       return $row->id;
+    }
+  }
   public function get_feed_albums($feed_id)
   {
     $q = $this->db->select('feed_album.*, album.name, album.id as album_id')

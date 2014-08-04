@@ -94,6 +94,8 @@ class Auth extends MY_Controller
       // Create session var
       $user = $this->user_model->find_by_id($user_id);
       $this->create_login_session($user);
+      $feed_id=$this->feed_model->get_feed_id_by_username($this->session->userdata('username'));
+      $this->session->set_userdata('feed_id', $feed_id);
 
       $this->session->set_flashdata('flash_message', 'You are logged in.');
 

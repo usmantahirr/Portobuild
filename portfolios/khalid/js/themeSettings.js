@@ -33,7 +33,7 @@ function removeLinks() {
 var themeDataLoad = angular.module('SideMenuTheme', []);
 
 themeDataLoad.controller('UserController', ['$scope', '$http', function($scope, $http) {
-  $http.get('http://portobuild.dev/theme/get_details/khalid').success(function(data) {
+  $http.get('http://localhost/portobuild/theme/get_details/khalid').success(function(data) {
     $scope.user = data;
   });
 }]);

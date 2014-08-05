@@ -2,7 +2,6 @@
 	# Turn on URL rewriting
 	RewriteEngine On
 	SetEnv HTTP_MOD_REWRITE On
-	SetEnv HTTP_MOD_REWRITE On
 	
 	# If your website begins from a folder e.g localhost/my_project then 
 	# you have to change it to: RewriteBase /my_project/

@@ -128,6 +128,14 @@ html::-webkit-scrollbar-thumb:active{
 	padding: 20px;
 	height: 100%;
 }
+/**
+* Album folder styles
+**/
+.album-folder {
+    background: url(../images/albums/album-icon.png);
+    height: 256px;
+    width: 256px;
+}
 /***
  * Top Title bar Styles
  ***/

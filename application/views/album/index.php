@@ -77,19 +77,29 @@
 				</div>
 				<div class="pull-right" ng-controller = "UserController">
 					<span class="logout-msg">Hello <em><strong>Usman Tahir</strong></em></span>
-					<button class="btn btn-danger"><a href="<?php echo site_url("auth/logout"); ?>">Sign Out</a></button>
+                    <a href="<?php echo site_url("auth/logout"); ?>" class="btn btn-danger">Sign Out</a>
 				</div>
 				<div class="clearfix"></div>
 			</section>
 			<div id="data-container">
 				<a class="btn btn-primary" href="<?php echo site_url('feed/edit/' . $feed_id); ?>">Add albums to portfolio</a>
-				
+                <a class="btn btn-primary" href="<?php echo site_url("album/create"); ?>">Create new album</a>
 				<div class="gallery">
+                    <?php if (isset($albums)): ?>
+                    <?php foreach ($albums as $album): ?>
+                    <a href=""><img src="<?php echo base_url(); ?>images/albums/album-icon.png" alt="Album Image" class="album-folder"></a>
+                    <?php   
+                        endforeach;
+                        endif; 
+                    ?>
+
+<!--
 					<a href="<?php echo base_url(); ?>_lib/wall(1).jpg" ng-repeat="item in galleryImages" rel="image_group" title="">
 						<div class="croped">
 						     <img alt="Image Thumbnail" src="<?php echo base_url(); ?>_lib/wall(1).jpg" class="thumb" />
 						</div>
 					</a>
+-->
 				</div>
 				
 			</div>

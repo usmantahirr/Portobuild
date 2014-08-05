@@ -120,6 +120,9 @@ class Album extends MY_Controller
     $session_data = $this->get_user_data();
     $data['email_address'] = $session_data['email_address'];
     $data['feed_id'] = $this->session->userdata('feed_id');
+    $data['username']=$this->session->userdata('username');
+    $data['friends'] = $this->user_model->get_friends_by_username($this->session->userdata('username'));
+   // die;
     //echo $this->feed_model->get_feed_uuid(3);
     
     $this->load->view('album/index', $data);

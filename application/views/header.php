@@ -3,10 +3,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Portobuild</title>
         <link rel="stylesheet" href="<?php echo base_url(); ?>css/app.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="<?php echo base_url(); ?>css/chat.css" />
+        <link type="text/css" rel="stylesheet" media="all" href="<?php echo base_url(); ?>css/screen.css" />
         <script src="<?php echo base_url(); ?>bower_components/modernizr/modernizr.js"></script>
         <script src="<?php echo base_url(); ?>bower_components/jquery/dist/jquery.min.js"></script>
         <script src="<?php echo base_url(); ?>bower_components/foundation/js/foundation.min.js"></script>
         <script src="<?php echo base_url(); ?>js/app.js"></script>
+        <script src="<?php echo base_url(); ?>js/bootstrap.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>js/chat.js"></script>
+
+
         
 
 </head>

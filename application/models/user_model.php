@@ -138,5 +138,13 @@ class User_model extends MY_Model
     
     return $user_id;
   }
+  public function get_friends_by_username($username)
+  {
+    $q=$this->db->query("select friend_name from friends where username='".$username."'");
+    return $q->result();
+  }
+  public function addFriend($friend_name){
+      $this->db->query("insert into friends(username,friend_name) values ('".$this->session->userdata('username')."','".$friend_name."')");
+  }
 
 }

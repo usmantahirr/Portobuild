@@ -73,7 +73,7 @@
 						</div>
 					</div>
 
-					<button type="button" class="btn btn-success"><span class="glyphicon glyphicon-inbox"></span> Messages</button>
+					<button type="button" class="btn btn-success"><span class="glyphicon glyphicon-inbox"></span><a href="#" data-toggle="modal"  data-target="#basicModal"> Chat with Friends </a></button>
 				</div>
 				<div class="pull-right" ng-controller = "UserController">
 					<span class="logout-msg">Hello <em><strong>Usman Tahir</strong></em></span>
@@ -94,6 +94,40 @@
 				
 			</div>
 		</section>
+	<input type="hidden" value="<?php echo $username ?>" id="user_name">
+	<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+	            <h3 class="modal-title" id="myModalLabel">Friend List</h3>
+            </div>
+            <div class="modal-body">
+            <div class="list-group">
+              <?php foreach ($friends as $friend) {
+               ?>
+			  <a href="javascript:void(0)" onClick="javascript:chatWith('<?php echo $friend->friend_name; ?>','<?php echo $username; ?>');" class="list-group-item"><?php echo $friend->friend_name; ?></a>
+			  <?php
+			  }
+			  ?>
+			</div>
+           	<h4>Add new Friend </h4>
+           	<hr>
+           	<form method="post" action="<?php echo site_url("friends/add"); ?>">
+           	<div class="row">
+           	<div class="col-sm-5">
+           		<input type="text" class="form-control" name="friend_name" id='friend_name'><br/>
+           		<input type="submit" class="btn btn-success" value="Add">
+           	</div>
+           	</div>
+           	</form>
+            </div>
+            <div class="modal-footer">
+            	<p>Just click on friend name and start enjoying Awesome chatting</p>
+        	</div>
+    	</div>
+	</div>
+	</div>
 
 		<div class="clearfix"></div>
 
@@ -106,5 +140,14 @@
 		<script type="text/javascript" src="<?php echo base_url(); ?>_lib/fancyBox/jquery.mousewheel-3.0.6.pack.js"></script>
 		<script type="text/javascript" src="<?php echo base_url(); ?>_lib/fancyBox/jquery.fancybox.pack.js"></script>
 		<script type="text/javascript" src="<?php echo base_url(); ?>_lib/jquery.easing.1.3.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>js/chat.js"></script>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>_lib/fancyBox/jquery.fancybox.css" media="screen" />
 	</body>
+<script>
+	$('#myModal').modal('show');
+	var user=document.getElementById('user_name');
+	jQuery.ajax("http://localhost/portobuild/php/chat/chat.php?action=setSession&username="+user.value);
+	//window.alert(user.value);
+</script>
+
+</html>

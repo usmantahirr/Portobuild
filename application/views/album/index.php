@@ -77,8 +77,7 @@
 							</div>
 						</div>
 					</div>
-
-					<button type="button" class="btn btn-success"><span class="glyphicon glyphicon-inbox"></span> Messages</button>
+                    <a class="btn btn-success" href="#" data-toggle="modal"  data-target="#basicModal"><span class="glyphicon glyphicon-inbox"></span>  Chat with Friends </a>
 				</div>
 				<div class="pull-right" ng-controller = "UserController">
 					<span class="logout-msg">Hello <em><strong>Usman Tahir</strong></em></span>
@@ -119,17 +118,10 @@
                         endif; 
                     ?>
                     <?php echo $this->pagination->create_links(); ?>
-<!--
-					<a href="<?php echo base_url(); ?>_lib/wall(1).jpg" ng-repeat="item in galleryImages" rel="image_group" title="">
-						<div class="croped">
-						     <img alt="Image Thumbnail" src="<?php echo base_url(); ?>_lib/wall(1).jpg" class="thumb" />
-						</div>
-					</a>
--->
 				</div>
-				
 			</div>
 		</section>
+
         <!-- Modal -->
         <div class="modal fade" id="album-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -150,26 +142,72 @@
             </div>
         </div>
         
+        <!--  Chat modal  -->
+        <input type="hidden" value="<?php echo $username ?>" id="user_name">
+        <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+                        <h3 class="modal-title" id="myModalLabel">Friend List</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="list-group">
+                          <?php foreach ($friends as $friend) {
+                           ?>
+                          <a href="javascript:void(0)" onClick="javascript:chatWith('<?php echo $friend->friend_name; ?>','<?php echo $username; ?>');" class="list-group-item"><?php echo $friend->friend_name; ?></a>
+                          <?php
+                          }
+                          ?>
+                        </div>
+                        <h4>Add new Friend </h4>
+                        <hr>
+                        <form method="post" action="<?php echo site_url("friends/add"); ?>">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" name="friend_name" id='friend_name'><br/>
+                                    <input type="submit" class="btn btn-success" value="Add">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <p>Just click on friend name and start enjoying Awesome chatting</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 		<div class="clearfix"></div>
-                
+        
 		<!-- All JS Files -->
 		<script src="<?php echo base_url(); ?>_lib/jquery-1.11.0.min.js"></script>
 		<script src="<?php echo base_url(); ?>_lib/bootstrap/js/bootstrap.min.js"></script>
 		<script src="<?php echo base_url(); ?>js/navigationScript.js"></script>
+        
         <script type="text/javascript">
             var deleteUrl;
-            $(document).ready(function() {
-                $('.delete-album').click(function() {
-                    deleteUrl = $(this).attr('rel');
+            jQuery(document).ready(function() {
+                jQuery('.delete-album').click(function() {
+                    deleteUrl = jQuery(this).attr('rel');
                 });
-                $('#album-modal').on('shown.bs.modal', function (e) {
-                    $('#album-modal-delete-btn').attr('href', deleteUrl);
+                jQuery('#album-modal').on('shown.bs.modal', function (e) {
+                    jQuery('#album-modal-delete-btn').attr('href', deleteUrl);
                 })
             });
         </script>
+        <script>
+            jQuery('#myModal').modal('show');
+            var user=document.getElementById('user_name');
+            jQuery.ajax("http://portobuild.dev/php/chat/chat.php?action=setSession&username="+user.value);
+            //window.alert(user.value);
+        </script>
+        
 		<!-- FancyBox Files -->
 		<script type="text/javascript" src="<?php echo base_url(); ?>_lib/fancyBox/jquery.mousewheel-3.0.6.pack.js"></script>
 		<script type="text/javascript" src="<?php echo base_url(); ?>_lib/fancyBox/jquery.fancybox.pack.js"></script>
 		<script type="text/javascript" src="<?php echo base_url(); ?>_lib/jquery.easing.1.3.js"></script>
+		<script type="text/javascript" src="<?php echo base_url(); ?>js/chat.js"></script>
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>_lib/fancyBox/jquery.fancybox.css" media="screen" />
 	</body>
+</html>

@@ -107,7 +107,7 @@ class Theme extends MY_Controller
    //  } else {
    //      echo 'failed';
    //  }
-  	// redirect('album/create');
+  	redirect('album/create');
   }
   public function get_details($username){
     echo $this->portfolio_model->get_portfolio_details_by_username($username);

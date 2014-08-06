@@ -95,9 +95,12 @@ class Auth extends MY_Controller
       $user = $this->user_model->find_by_id($user_id);
       $this->create_login_session($user);
       $feed_id=$this->feed_model->get_feed_id_by_username($this->session->userdata('username'));
+      $_SESSION['username']=$this->session->userdata('username');
       $this->session->set_userdata('feed_id', $feed_id);
 
       $this->session->set_flashdata('flash_message', 'You are logged in.');
+       $_SESSION['username']=$this->session->userdata('username');
+       
 
       redirect('album');
     }
@@ -106,6 +109,7 @@ class Auth extends MY_Controller
       $data = array();
       $data['login_error'] = 'Incorrect login';
       $data['email'] = $this->input->post('email_address');
+
       
       $this->load->view('auth/login', $data);
     }

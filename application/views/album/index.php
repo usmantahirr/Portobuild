@@ -12,14 +12,19 @@
 				<ul>
 					<li><span class="glyphicon glyphicon-home" ></span><a href="#"> Home</a></li>
 					<li class="active"><span class="glyphicon glyphicon-picture" ></span><a href="#"> Portfolio</a></li>
-					
+                    <?php if (isset($albums)): ?>
+                    <?php foreach ($albums as $album): ?>
 					<div>
 						<ul class="gallery-menu">
-							<li class="galleries" ng-repeat="item in navList">
-								<a href="{{item.link}}"> Album</a>
+							<li class="galleries">
+                                <a href="<?php echo site_url("album/images/" . $album['id']); ?>"> <span class="badge"><?php echo $album['total_images']; ?></span> <?php echo $album['name']; ?></a>
 							</li>
 						</ul>
 					</div>
+                    <?php
+                        endforeach;
+                        endif; 
+                    ?>
 					<li><span class="glyphicon glyphicon-cog" ></span><a href="#"> Settings</a></li>
 					<ul>
 						<li class="galleries">
@@ -87,12 +92,33 @@
 				<div class="gallery">
                     <?php if (isset($albums)): ?>
                     <?php foreach ($albums as $album): ?>
-                    <a href=""><img src="<?php echo base_url(); ?>images/albums/album-icon.png" alt="Album Image" class="album-folder"></a>
+                    <div class="album-folder-container">
+                        
+                        <a href="<?php echo site_url("album/images/" . $album['id']); ?>"><img src="<?php echo base_url(); ?>images/albums/album-icon.png" alt="Album Image" class="album-folder"></a>        
+                        <span class="album-name"><?php echo $album['name']; ?>
+                            <span class="images-count badge"><?php echo $album['total_images']; ?></span>
+                        </span>
+                        
+                        <div class="dropdown">
+                            <button class="btn btn-default btndropdown-toggle album-options-dropdown" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                                Actions
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url("album/edit/" . $album['id']); ?>"><i class="glyphicon glyphicon-pencil"></i> Rename</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url("album/images/" . $album['id']); ?>"><i class="glyphicon glyphicon-th-large"></i> Images</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo site_url("album/configure/" . $album['id']); ?>"><i class="glyphicon glyphicon-cog"></i> Configure</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation"><a class="delete-album" role="menuitem" tabindex="-1" href="#album-modal" data-toggle="modal" rel="<?php echo site_url("album/remove/" . $album['id']); ?>"> <i class="glyphicon glyphicon-trash"></i> Delete <span class="label label-danger pull-right">!</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
                     <?php   
                         endforeach;
                         endif; 
                     ?>
-
+                    <?php echo $this->pagination->create_links(); ?>
 <!--
 					<a href="<?php echo base_url(); ?>_lib/wall(1).jpg" ng-repeat="item in galleryImages" rel="image_group" title="">
 						<div class="croped">
@@ -104,14 +130,43 @@
 				
 			</div>
 		</section>
-
+        <!-- Modal -->
+        <div class="modal fade" id="album-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Delete Album</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Are you sure you want to delete this album?</strong></p>
+                        <p>This will permanently delete all photos in this album.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a id="album-modal-delete-btn" href="#" class="btn btn-danger">Delete</a>
+                        <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
 		<div class="clearfix"></div>
-
+                
 		<!-- All JS Files -->
 		<script src="<?php echo base_url(); ?>_lib/jquery-1.11.0.min.js"></script>
 		<script src="<?php echo base_url(); ?>_lib/bootstrap/js/bootstrap.min.js"></script>
 		<script src="<?php echo base_url(); ?>js/navigationScript.js"></script>
-
+        <script type="text/javascript">
+            var deleteUrl;
+            $(document).ready(function() {
+                $('.delete-album').click(function() {
+                    deleteUrl = $(this).attr('rel');
+                });
+                $('#album-modal').on('shown.bs.modal', function (e) {
+                    $('#album-modal-delete-btn').attr('href', deleteUrl);
+                })
+            });
+        </script>
 		<!-- FancyBox Files -->
 		<script type="text/javascript" src="<?php echo base_url(); ?>_lib/fancyBox/jquery.mousewheel-3.0.6.pack.js"></script>
 		<script type="text/javascript" src="<?php echo base_url(); ?>_lib/fancyBox/jquery.fancybox.pack.js"></script>

@@ -1,5 +1,4 @@
 <?php
-
     $js =array('jquery-ui-1.8.18.custom.min.js', 'swfobject.js', 'jquery.uploadify.v2.1.4.min.js', 'fancybox/jquery.fancybox-1.3.4.pack.js'); 
     $css = array('uploadify.css', 'fancybox/jquery.fancybox-1.3.4.css','app.css');
 ?>
@@ -80,7 +79,7 @@
           <img src="<?php echo base_url() . 'uploads/' . $image->raw_name . '_thumb' . $image->file_ext . '?r=' . rand(); ?>" alt="<?php echo $image->caption; ?>" />
         </a>
       </div>
-      <div class="info" style="left: <?php echo $config->thumb_width + 50; ?>px">
+      <div class="info">
         File name: <?php echo $image->name; ?><br />
         Caption: 
           <?php if (empty($image->caption)): ?>

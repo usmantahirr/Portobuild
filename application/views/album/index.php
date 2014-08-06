@@ -30,6 +30,9 @@
 						<li class="galleries">
 							<a href="canvas/">Canvas</a>
 						</li>
+                        <li class="galleries">
+                            <a href="<?php echo base_url(); ?>/theme/user_info">User Details</a>
+                        </li>
 					</ul>
 				</ul>
 			</nav>

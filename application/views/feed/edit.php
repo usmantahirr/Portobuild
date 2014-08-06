@@ -17,17 +17,17 @@ $includes = array(
 
 <h1><?php echo $feed->name; ?></h1>
 
-<span>JSON feed</span>
+<span>fetch JSON</span>
 <pre><a href="<?php echo site_url("api/myfeed/json/$feed->uuid"); ?>" target="_blank"><?php echo site_url("api/myfeed/json/$feed->uuid"); ?></a></pre>
-<span>XML feed</span>
+<span>fetch XML</span>
 <pre><a href="<?php echo site_url("api/myfeed/xml/$feed->uuid"); ?>" target="_blank"><?php echo site_url("api/myfeed/xml/$feed->uuid"); ?></a></pre>
 
 <div id="reorder-feedback" class="alert alert-success" style="display: none;"></div>
 
-<div class="alert alert-info">To create a custom feed, drag albums from the right into 'My Feed'.</div>
+<div class="alert alert-info">To add album to public display drag them from right to left</div>
 
 <div style="float:left; margin-right: 20px;">
-  <h4>My Feed (drop)</h4>
+  <h4>Public Feed (drop)</h4>
   <ul id="feeds">
     <?php foreach ($feed_albums as $feed_album): ?>
     <li id="album_<?php echo $feed_album->album_id; ?>" class="ui-state-default"><?php echo $feed_album->name; ?></li>
@@ -36,7 +36,7 @@ $includes = array(
 </div>
 
 <div style="float:left;">
-  <h4>My Albums (drag)</h4>
+  <h4>Private Albums (drag)</h4>
   <ul id="takeable">
     <?php foreach ($albums as $album): ?>
     <li id="album_<?php echo $album->id; ?>" class="ui-state-default"><?php echo $album->name; ?></li>

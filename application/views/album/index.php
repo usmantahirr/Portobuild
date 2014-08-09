@@ -3,15 +3,30 @@
 		<section id="side-bar" class="pull-left">
 			<span class="side-bar-toggle" data-toggle="1"> <span class="glyphicon glyphicon-th-list"></span> </span>
 			<div id="user-info" ng-controller = "UserController">
-				<img alt="Profile Picture" src="<?php echo base_url(); ?>_lib/usman_tahir.png" class="img-circle profile-picture">
-				<h2 class="profile-heading">Usman Tahir</h2>
+                <?php if($profile_picture!='') {
+                ?>
+				    <img alt="Profile Picture" src="<?php echo $profile_picture ?>" class="img-circle profile-picture" height="200" width="200"><br/><br/>
+                    <a class="btn btn-warning" href="#" data-toggle="modal" data-target="#pictureModal"><span class="glyphicon glyphicon-circle-arrow-up"></span>  Change Profile Picture </a>
+                <?php
+                }
+                else{
+                ?>
+                <img alt="Profile Picture" src="<?php echo base_url(); ?>images/default_picture.jpg" class="img-circle profile-picture" height="200" width="200"><br/><br/>
+                <a class="btn btn-warning" href="#" data-toggle="modal" data-target="#pictureModal"><span class="glyphicon glyphicon-circle-arrow-up"></span>  Upload Profile Picture </a>
+                       
+                
+                <?php
+                }
+                ?>
+                
+                <h2 class="profile-heading"><?php echo $first_name." ".$last_name; ?></h2>
 				<button class="btn btn-primary">View Public Profile</button>
 			</div>
 
 			<nav id="main-nav">
 				<ul>
 					<li><span class="glyphicon glyphicon-home" ></span><a href="#"> Home</a></li>
-					<li class="active"><span class="glyphicon glyphicon-picture" ></span><a href="#"> Portfolio</a></li>
+					<li class="active-admin"><span class="glyphicon glyphicon-picture" ></span><a href="#"> Portfolio</a></li>
                     <?php if (isset($albums)): ?>
                     <?php foreach ($albums as $album): ?>
 					<div>
@@ -31,7 +46,7 @@
 							<a href="canvas/">Canvas</a>
 						</li>
                         <li class="galleries">
-                            <a href="<?php echo base_url(); ?>/theme/user_info">User Details</a>
+                            <a href="<?php echo base_url(); ?>theme/user_info">User Details</a>
                         </li>
 					</ul>
 				</ul>
@@ -83,7 +98,7 @@
                     <a class="btn btn-success" href="#" data-toggle="modal"  data-target="#basicModal"><span class="glyphicon glyphicon-inbox"></span>  Chat with Friends </a>
 				</div>
 				<div class="pull-right" ng-controller = "UserController">
-					<span class="logout-msg">Hello <em><strong>Usman Tahir</strong></em></span>
+					<span class="logout-msg">Hello <em><strong><?php echo $username; ?></strong></em></span>
                     <a href="<?php echo site_url("auth/logout"); ?>" class="btn btn-danger">Sign Out</a>
 				</div>
 				<div class="clearfix"></div>
@@ -125,7 +140,32 @@
 			</div>
 		</section>
 
-        <!-- Modal -->
+
+        <!-- profile picture modal -->
+        <div class="modal fade" id="pictureModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Delete Album</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Upload Profile Picture</strong></p>
+                        <?php echo form_open_multipart('profile/change_picture');?>
+                            <input type="file" name="userfile" size="20" />
+                            <br /><br />
+                            <input type="submit" class="btn btn-success" value="upload" />
+                            </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- Delete Modal -->
         <div class="modal fade" id="album-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -196,6 +236,8 @@
                 });
                 jQuery('#album-modal').on('shown.bs.modal', function (e) {
                     jQuery('#album-modal-delete-btn').attr('href', deleteUrl);
+                jQuery('#pictureModal').on('shown.bs.modal', function (e) {
+                    jQuery('#picture-modal-btn').attr('href', deleteUrl);
                 })
             });
         </script>

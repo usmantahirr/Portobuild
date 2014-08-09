@@ -97,6 +97,12 @@ class User_model extends MY_Model
     
     return $q->row();
   }
+  public function get_by_username($username)
+  {
+    $q = $this->db->get_where($this->table_name, array('username' => $username));
+    
+    return $q->row();
+  }
   
   /**
    * Update last_ip column for user.
@@ -145,6 +151,9 @@ class User_model extends MY_Model
   }
   public function addFriend($friend_name){
       $this->db->query("insert into friends(username,friend_name) values ('".$this->session->userdata('username')."','".$friend_name."')");
+  }
+  public function update_profile_picture($picture){
+    $this->db->query("update user set display_picture = '".$picture."' where username='".$this->session->userdata('username')."'");
   }
 
 }

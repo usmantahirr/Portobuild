@@ -47,7 +47,7 @@ class Theme extends MY_Controller
       return;
     }
 	$this->load->helper('file');
-    $this->load->helper('form');
+   $this->load->helper(array('form', 'url'));
     $this->load->model('user_model');
     $this->load->model('portfolio_model');
     $this->load->model('album_model');
@@ -182,13 +182,46 @@ class Theme extends MY_Controller
     $data['feed_id'] = $this->session->userdata('feed_id');
     $data['username']=$this->session->userdata('username');
     $data['friends'] = $this->user_model->get_friends_by_username($this->session->userdata('username'));
+    
+
+    $account_details=$this->user_model->get_by_username($data['username']);
+    $data['account_details']=$account_details;
+
+
+  
+    //Set the message for the first time
+    
+    $data['upload_data'] = '';
+    
+    //load the view/upload.php with $data
+
    // die;
     //echo $this->feed_model->get_feed_uuid(3);
+    $account_details=$this->user_model->get_by_username($this->session->userdata('username'));
+    $data['profile_picture']=$account_details->display_picture;
+    $data['first_name']=$account_details->first_name;
+    $data['last_name']=$account_details->last_name;
     $this->load->view("theme/user_info",$data);
   }
 
   public function save_details(){
-    $this->load->helper('form');
+    $account_details=$this->user_model->get_by_username($this->session->userdata('username'));
+
+    $user_data = array(
+      'define_yourself' => $this->input->post('define_yourself'),
+      'about_me' => $this->input->post('about_me'),
+      'profession' => $this->input->post('profession'),
+      'phone_number' => $this->input->post('phone_number'),
+      'address_1' => $this->input->post('address1'),
+      'address_2' => $this->input->post('address2'),
+      'portfolio_info' => $this->input->post('Portfolio_info'),
+      'contact_info' => $this->input->post('contact_info'),
+      'phone_number' => $this->input->post('phone_number'),
+      'facebook_id' => $this->input->post('facebook_id'),
+      'twitter_id' => $this->input->post('twitter_id'),
+      'dribbble_id' => $this->input->post('dribble_id'));
+    $user_data['uid']=$account_details->id;
+    $user_data['username']=$account_details->username;
     $config['upload_path'] = './uploads/';
     $config['allowed_types'] = 'gif|jpg|png';
     $config['max_size'] = '100';
@@ -199,31 +232,21 @@ class Theme extends MY_Controller
 
     if ( ! $this->upload->do_upload())
     {
-     print_r($error = array('error' => $this->upload->display_errors()));
+      $error = array('error' => $this->upload->display_errors());
 
-     // $this->load->view('upload_form', $error);
+      //$this->load->view('upload_form', $error);
     }
     else
     {
-      print_r($data = array('upload_data' => $this->upload->data()));
+      $data = array('upload_data' => $this->upload->data());
 
-     // $this->load->view('upload_success', $data);
+      //$this->load->view('upload_success', $data);
     }
-    // $user_data = array(
-    //   'define_yourself' => $this->input->post('define_yourself'),
-    //   'about_me' => $this->input->post('about_me'),
-    //   'profession' => $this->input->post('profession'),
-    //   'phone_number' => $this->input->post('phone_number'),
-    //   'address1' => $this->input->post('address1'),
-    //   'address2' => $this->input->post('address2'),
-    //   'Portfolio_info' => $this->input->post('Portfolio_info'),
-    //   'contact_info' => $this->input->post('contact_info'),
-    //   'phone_number' => $this->input->post('phone_number'),
-    //   'facebook_id' => $this->input->post('facebook_id'),
-    //   'twitter_id' => $this->input->post('twitter_id'),
-    //   'dribble_id' => $this->input->post('dribble_id'));
 
-    //$id=$this->portfolio_model->create($ser_data);
+      $user_data['profile_picture']="http://portobuild.dev/uploads/".$data['upload_data']['orig_name'];
+    
+    $id=$this->portfolio_model->create($user_data);
+    redirect('theme/user_info');
 
 
   }

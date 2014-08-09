@@ -48,7 +48,8 @@ class Portfolio_model extends MY_Model
    * @return type 
    */
   public function get_portfolio_details_by_username($username){
-    $q=$this->db->query("SELECT pd.`id`, pd.`uid`, pd.`username`, pd.`profile_picture`, pd.`about_me`, pd.`define_myself`, pd.`phone_number`, pd.`adress_1`, pd.`addres_2`, pd.`facebook_id`, pd.`twitter_id`, pd.`dribbble`, pd.`profession` ,us.`id`, us.`uuid`, us.`email_address`, us.`password`, us.`username`, us.`first_name`, us.`last_name`, us.`min_rate`, us.`max_rate`, us.`from_time`, us.`to_time`, us.`birth_date`, us.`current_location`, us.`is_active`, us.`is_admin`, us.`created_at`, us.`updated_at`, us.`last_logged_in`, us.`last_ip` FROM `portfolio_details` pd inner join `user` us on pd.username=us.username
+
+    $q=$this->db->query("SELECT pd.`id`, pd.`uid`, pd.`username`, pd.`define_yourself`, pd.`profile_picture`, pd.`about_me`, pd.`define_myself`, pd.`portfolio_info`, pd.`contact_info`, pd.`phone_number`, pd.`address_1`, pd.`address_2`, pd.`facebook_id`, pd.`twitter_id`, pd.`dribbble_id`, pd.`profession` ,us.`id`,us.`uuid`,us.`email_address`,us.`password`,us.`username`,us.`first_name`,us.`last_name`,us.`min_rate`,us.`max_rate`,us.`from_time`,us.`to_time`,us.`birth_date`,us.`current_location`,us.`display_picture`,us.`is_active`,us.`is_admin`,us.`created_at`,us.`updated_at`,us.`last_logged_in`,us.`last_ip` FROM `portfolio_details` pd inner join `user` us on pd.username=us.username
 where pd.username='".$username."'");
     foreach ($q->result() as $key=>$row) {
       return json_encode($row);

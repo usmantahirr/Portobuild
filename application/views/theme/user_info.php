@@ -3,8 +3,23 @@
     <section id="side-bar" class="pull-left">
       <span class="side-bar-toggle" data-toggle="1"> <span class="glyphicon glyphicon-th-list"></span> </span>
       <div id="user-info" ng-controller = "UserController">
-        <img alt="Profile Picture" src="<?php echo base_url(); ?>_lib/usman_tahir.png" class="img-circle profile-picture">
-        <h2 class="profile-heading">Usman Tahir</h2>
+         <?php if($profile_picture!='') {
+                ?>
+            <img alt="Profile Picture" src="<?php echo $profile_picture ?>" class="img-circle profile-picture" height="200" width="200"><br/><br/>
+                    <a class="btn btn-warning" href="#" data-toggle="modal" data-target="#pictureModal"><span class="glyphicon glyphicon-circle-arrow-up"></span>  Change Profile Picture </a>
+                <?php
+                }
+                else{
+                ?>
+                <img alt="Profile Picture" src="<?php echo base_url(); ?>images/default_picture.jpg" class="img-circle profile-picture" height="200" width="200"><br/><br/>
+                <a class="btn btn-warning" href="#" data-toggle="modal" data-target="#pictureModal"><span class="glyphicon glyphicon-circle-arrow-up"></span>  Upload Profile Picture </a>
+                       
+                
+                <?php
+                }
+                ?>
+                
+                <h2 class="profile-heading"><?php echo $first_name." ".$last_name; ?></h2>
         <button class="btn btn-primary">View Public Profile</button>
       </div>
 
@@ -30,7 +45,7 @@
             <li class="galleries">
               <a href="canvas/">Canvas</a>
             </li>
-            <li class="galleries active">
+            <li class="galleries active-admin">
                 <a  href="<?php echo base_url(); ?>/theme/user_info">User Details</a>
             </li>
           </ul>
@@ -83,32 +98,49 @@
                     <a class="btn btn-success" href="#" data-toggle="modal"  data-target="#basicModal"><span class="glyphicon glyphicon-inbox"></span>  Chat with Friends </a>
         </div>
         <div class="pull-right" ng-controller = "UserController">
-          <span class="logout-msg">Hello <em><strong>Usman Tahir</strong></em></span>
+          <span class="logout-msg">Hello <em><strong><?php echo $username; ?></strong></em></span>
                     <a href="<?php echo site_url("auth/logout"); ?>" class="btn btn-danger">Sign Out</a>
         </div>
         <div class="clearfix"></div>
       </section>
       <div id="data-container">
       <div class="row">
+        <div class="col-sm-4 col-sm-offset-4">
+          <ul class="nav nav-pills" role="tablist">
+            <li class="active"><a href="#profile_details" role="tab" data-toggle="tab">Theme Details</a></li>
+            <li><a href="#account_details" role="tab" data-toggle="tab">Account Details</a></li>
+          </ul>
+
+
+        </div>
+      </div>
+      <!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="profile_details">
+  <div class="row">
         <div class="col-sm-10 col-sm-offset-1">
           <h1>Set Up Your Theme Details Here!<small> this is what people will see</small></h1>
           <hr>
         </div>
-      </div>
+  </div>
+   <div class="row">
+          <div class="col-sm-5 col-sm-offset-3">
+            <div class="alert alert-warning alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong>Hey!</strong>  it will look nasty if you left any detail blank</div>
+          </div>
+        </div>
         <?php
         echo form_open_multipart('theme/save_details');
 
 
-          if (isset($login_error)) {
-                  echo '<div class="alert alert-error"><strong>' . $login_error . '</strong></div>';
-          } ?>
+          ?>
           <div class="row">
             <div class="col-sm-5 col-sm-offset-3">
-              <?php
-                echo form_label('Upload Profile Picture', 'picture');
-                $att=array('name'=>'picture','id'=>'picture','type'=>'file','class'=>'form-control');  
-                echo  form_upload($att);
-              ?>
+              <?php echo form_label('Upload display picture of your Portfolio <br/><small>*   it can be company logo</small>', 'userfile'); ?>
+              <input type="file" name="userfile" size="20" />
+
+              <br /><br />
             </div>
           </div>
           <br/>
@@ -180,6 +212,11 @@
           </div><br/>
           <div class="row">
             <div class="col-sm-5 col-sm-offset-3">
+             <hr>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-5 col-sm-offset-3">
             <?php
                 echo form_label('Contact information', 'contact_info');
                 $att=array('name'=>'contact_info','id'=>'contact_info','type'=>'text','class'=>'form-control','placeholder'=>'Say something about your Conact','rows'=>'3','cols'=>'50');  
@@ -230,8 +267,133 @@
             ?>
             </div>
           </div>
+          </form>
+          </div>
+  <div class="tab-pane" id="account_details">
+    <div class="row">
+        <div class="col-sm-11 col-sm-offset-1">
+          <h1>Your Account Details are Here!<small> that is how you will Access your account</small></h1>
+          <hr>
+        </div>
+  </div>
+        <div class="row">
+          <div class="col-sm-5 col-sm-offset-3">
+            <div class="alert alert-warning alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong>Alert!</strong> You can not change your Email</div>
+          </div>
+        </div>
+        <?php
+        echo form_open_multipart('profile/update_details');
+
+
+          ?>
+          
+          <div class="row">
+            <div class="col-sm-5 col-sm-offset-3">
+            <?php
+                echo form_label('Email: '.$account_details->email_address, '');
+                echo "<br/><br/><br/>";
+                echo form_label('First Name', 'first_name');
+                $att=array('name'=>'first_name','id'=>'first_name','type'=>'text','class'=>'form-control','value'=>$account_details->first_name);  
+                echo form_input($att);
+            ?>
+            </div>
+          </div><br/>
+          <div class="row">
+            <div class="col-sm-5 col-sm-offset-3">
+            <?php
+                echo form_label('Last Name', 'last_name');
+                $att=array('name'=>'last_name','id'=>'last_name','type'=>'text','class'=>'form-control','value'=>$account_details->last_name);  
+                echo form_input($att);
+                
+            ?>
+            </div>
+          </div><br/>
+          <div class="row">
+            <div class="col-sm-5 col-sm-offset-3">
+            <?php
+                echo form_label('Username', 'username');
+                $att=array('name'=>'username','id'=>'username','type'=>'text','class'=>'form-control','value'=>$account_details->username);  
+                echo form_input($att);
+                
+            ?>
+            </div>
+          </div><br/>
+          <div class="row">
+            <div class="col-sm-5 col-sm-offset-3">
+             <hr>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-2 col-sm-offset-3">
+            <?php
+                echo form_label('Min Rate', 'minrate');
+                $att=array('name'=>'minrate','id'=>'minrate','type'=>'number','class'=>'form-control','value'=>$account_details->min_rate);  
+                echo form_input($att);
+                
+            ?>
+            </div>
+            <div class="col-sm-2 col-sm-offset-1">
+            <?php
+                echo form_label('Max Rate', 'maxrate');
+                $att=array('name'=>'maxrate','id'=>'maxrate','type'=>'number','class'=>'form-control','value'=>$account_details->max_rate);  
+                echo form_input($att);
+                
+            ?>
+            </div>
+          </div><br/>
+          <div class="row">
+            <div class="col-sm-5 col-sm-offset-3">
+             <hr>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-5 col-sm-offset-3">
+            <?php
+                echo form_label('Current Location', 'current_location');
+                $att=array('name'=>'current_location','id'=>'current_location','type'=>'text','class'=>'form-control','value'=>$account_details->current_location);  
+                echo form_input($att);
+                
+            ?>
+            </div>
+          </div><br/>
+          <div class="row">
+            <div class="col-sm-2 col-sm-offset-4">
+            <?php
+                $att=array('value'=>'Update','type'=>'submit','class'=>'btn btn-success form-control');  
+                echo form_input($att);
+            ?>
+            </div>
+          </div>
+          </form>
+  </div>
+</div>
+        
+      
       </div>
     </section>
+        <!-- profile picture modal -->
+        <div class="modal fade" id="pictureModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Delete Album</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Upload Profile Picture</strong></p>
+                        <?php echo form_open_multipart('profile/change_picture');?>
+                            <input type="file" name="userfile" size="20" />
+                            <br /><br />
+                            <input type="submit" class="btn btn-success" value="upload" />
+                            </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
 
         <!-- Modal -->
         <div class="modal fade" id="album-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -254,7 +416,7 @@
         </div>
         
         <!--  Chat modal  -->
-        <input type="hidden" value="<?php echo $username ?>" id="user_name">
+        <input type="hidden" value="<?php echo $this->session->userdata['username'] ?>" id="user_name">
         <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">

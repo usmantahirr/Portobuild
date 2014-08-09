@@ -2,6 +2,8 @@
 class Profile extends CI_Controller {
     public function __construct() {
             parent::__construct(); 
+            $this->load->helper(array('form', 'url'));
+            $this->load->model("user_model");
     }
 
     public function index()
@@ -12,7 +14,8 @@ class Profile extends CI_Controller {
         if (empty($username)) {
             $this->displayPageNotFound();
         }
-        $this->load->view($username."/index");
+        //$this->load->view($username."/index");
+        redirect('portfolios/'.$username.'/index.php');
         /*
         $this->load->model('muser');
 
@@ -40,6 +43,46 @@ class Profile extends CI_Controller {
     protected function displayPageNotFound() {
         $this->output->set_status_header('404');
         $this->load->view('page_not_found');
+    }
+    public function change_picture(){
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = '100';
+        $config['max_width']  = '1024';
+        $config['max_height']  = '768';
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload())
+        {
+            $error = array('error' => $this->upload->display_errors());
+
+            //$this->load->view('upload_form', $error);
+        }
+        else
+        {
+            $data = array('upload_data' => $this->upload->data());
+
+          //  $this->load->view('upload_success', $data);
+        }
+        $pic="http://portobuild.dev/uploads/".$data['upload_data']['orig_name'];
+        $this->user_model->update_profile_picture($pic);
+        redirect("album");
+
+    }
+    public function update_details(){
+        $this->load->helper('form');
+        $user_data = array(
+      'first_name' => $this->input->post('first_name'),
+      'last_name' => $this->input->post('last_name'),
+      'username' => $this->input->post('username'),
+      'min_rate' => $this->input->post('minrate'),
+      'max_rate' => $this->input->post('maxrate'),
+      'current_location' => $this->input->post('current_location'));
+        $account_details=$this->user_model->get_by_username($this->session->userdata('username'));
+        $this->user_model->update($user_data,$account_details->id);
+        $this->session->set_userdata('username', $user_data['username']);
+        redirect("album");
     }
 }
 ?>

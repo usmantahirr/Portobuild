@@ -5,7 +5,7 @@
 			<div id="user-info" ng-controller = "UserController">
 				<img alt="Profile Picture" src="<?php echo base_url(); ?>_lib/usman_tahir.png" class="img-circle profile-picture">
 				<h2 class="profile-heading">Usman Tahir</h2>
-				<button class="btn btn-primary">View Public Profile</button>
+				<a class="btn btn-primary" href="<?php echo base_url(); ?>portfolios/">View Public Profile</a>
 			</div>
 
 			<nav id="main-nav">

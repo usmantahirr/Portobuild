@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html ng-app="SideMenuTheme">
-	<head ng-controller="UserController">
-		<title>{{user.username}}</title>
+	<head>
+		<title>Usman Tahir</title>
 		<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600" rel="stylesheet" type="text/css" />
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
 		<script src="js/jquery.min.js"></script>
@@ -56,11 +56,11 @@
 				<section class="bottom">
 					<!-- Social Icons -->
 						<ul class="icons">
-							<li><a href="http:\\{{user.facebook_id}}" class="fa fa-twitter solo"><span>Facebook</span></a></li>
-							<li><a href="http:\\{{user.twitter_id}}" class="fa fa-facebook solo"><span>Twitter</span></a></li>
-							<li><a href="http:\\{{user.github_id}}" class="fa fa-github solo"><span>Github</span></a></li>
-							<li><a href="http:\\{{user.dribbble_id}}" class="fa fa-dribbble solo"><span>Dribbble</span></a></li>
-							<li><a href="http:\\{{user.email_address}}" class="fa fa-envelope solo"><span>Email</span></a></li>
+							<li><a href="{{user.facebook}}" class="fa fa-twitter solo"><span>Twitter</span></a></li>
+							<li><a href="{{user.twitter}}" class="fa fa-facebook solo"><span>Facebook</span></a></li>
+							<li><a href="{{user.github}}" class="fa fa-github solo"><span>Github</span></a></li>
+							<li><a href="{{user.dribble}}" class="fa fa-dribbble solo"><span>Dribbble</span></a></li>
+							<li><a href="{{user.envelope}}" class="fa fa-envelope solo"><span>Email</span></a></li>
 						</ul>
 				</section>
 			
@@ -76,8 +76,8 @@
 							<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
 
 							<header>
-								<h2 class="alt">This is <strong>{{user.first_name}} {{user.last_name}}</strong>. A <a href="#">{{user.profession}}</a>, Designer<br />
-								{{user.define_myself}}</h2>
+								<h2 class="alt">This is <strong>{{user.fname}} {{user.lname}}</strong>. A <a href="#">{{user.profession}}</a>, Designer<br />
+								and a social media enthusiast</h2>
 							</header>
 							
 							<p>Ligula scelerisque justo sem accumsan diam quis. Vitae natoque dictum 
@@ -100,7 +100,10 @@
 								<h2>Portfolio</h2>
 							</header>
 							
-							<p>{{user.portfolio_info}}</p>
+							<p>Vitae natoque dictum etiam semper magnis enim feugiat convallis convallis
+							egestas rhoncus ridiculus in quis risus amet curabitur tempor orci penatibus.
+							Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis 
+							fusce hendrerit lacus ridiculus.</p>
 						
 							<div style="margin-left: 10px;">
 								<article class="item imageInstance" ng-repeat="item in galleryImages">
@@ -123,7 +126,7 @@
 								<h2>About Me</h2>
 							</header>
 							<a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
-							<p style="margin-top: 2em;">{{user.about_me}}</p>
+							<p style="margin-top: 2em;">{{user.aboutMe}}</p>
 						</div>
 					</section>
 			
@@ -135,7 +138,7 @@
 								<h2>Contact</h2>
 							</header>
 
-							<p>{{user.contact_info}}</p>
+							<p>{{user.contactWelcomeNote}}</p>
 							
 							<form method="post" action="#">
 								<div class="row half">
@@ -164,7 +167,7 @@
 				
 				<!-- Copyright -->
 					<div class="copyright">
-						<p>&copy; 2014 {{user.username}}. All rights reserved.</p>
+						<p>&copy; 2014 Usman Tahir. All rights reserved.</p>
 						<ul class="menu">
 							<li>Design: <a href="#">PortoBuild</a></li>
 						</ul>

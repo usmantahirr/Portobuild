@@ -37,8 +37,8 @@
 
 					<!-- Logo -->
 						<div id="logo">
-							<span class="image avatar48"><img src="../../admin/{{user.image}}" alt="" /></span>
-							<h1 id="title">{{user.fname}} {{user.lname}}</h1>
+							<span class="image avatar48"><img src="{{user.profile_picture}}" alt="" /></span>
+							<h1 id="title">{{user.first_name}} {{user.last_name}}</h1>
 							<span class="byline">{{user.profession}}</span>
 						</div>
 

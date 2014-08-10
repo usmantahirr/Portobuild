@@ -33,13 +33,13 @@ function removeLinks() {
 var themeDataLoad = angular.module('SideMenuTheme', []);
 
 themeDataLoad.controller('UserController', ['$scope', '$http', function($scope, $http) {
-  $http.get('http://portobuild.dev/theme/get_details/awais').success(function(data) {
+  $http.get('../../admin/data/user.json').success(function(data) {
     $scope.user = data;
   });
 }]);
 
 themeDataLoad.controller('GalleryController', ['$scope', '$http', function($scope, $http) {
-  http.get('http://portobuild.dev/theme/get_details/awais').success(function(data) {
+  $http.get('../../admin/data/gallery.json').success(function(data) {
     $scope.galleryImages = data;
   });
 }]);

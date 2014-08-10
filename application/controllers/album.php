@@ -56,6 +56,7 @@ class Album extends MY_Controller
    */
   public function index()
   {
+    $this->load->helper('form');
     $uri = $this->uri->segment(3);
     $offset = ( ! empty($uri) && is_numeric($uri)) ? $uri : 0;
     $per_page = 10;
@@ -124,7 +125,10 @@ class Album extends MY_Controller
     $data['friends'] = $this->user_model->get_friends_by_username($this->session->userdata('username'));
    // die;
     //echo $this->feed_model->get_feed_uuid(3);
-    
+    $account_details=$this->user_model->get_by_username($this->session->userdata('username'));
+    $data['profile_picture']=$account_details->display_picture;
+    $data['first_name']=$account_details->first_name;
+    $data['last_name']=$account_details->last_name;
     $this->load->view('album/index', $data);
   }
   

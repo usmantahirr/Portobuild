@@ -20,6 +20,8 @@
 		<script type="text/javascript" src="../../_lib/jquery.easing.1.3.js"></script>
 		<link rel="stylesheet" type="text/css" href="../../_lib/fancyBox/jquery.fancybox.css" media="screen" />
 		
+		<script type="text/javascript" src="modal/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="modal/css/bootstrap.css" media="screen" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
 
@@ -103,13 +105,54 @@
 							<p>{{user.portfolio_info}}</p>
 						
 							<div style="margin-left: 10px;">
-								<article class="item imageInstance" ng-repeat="item in galleryImages">
+								<article class="item imageInstance">
 									<div class="croped">
-										<a href="../../admin/{{item.src}}" class="image full" rel="fancybox"><img src="../../admin/{{item.src}}" alt=""></a>
+										<a data-toggle="modal" data-target="#myModal" href="#myModal" class="image full"><img src="../../uploads/2862401_thumb.jpg" alt=""></a>
 									</div>
 									<header>
 										<h3>{{item.name}}</h3>
 									</header>
+									<!-- Modal -->
+									<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									  <div class="modal-dialog modal-lg">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+									        <h4 class="modal-title" id="myModalLabel">{{item.name}} Name</h4>
+									      </div>
+									      <div class="modal-body">
+									        <img src="../../uploads/2862401.jpg" alt="" style="width:100%">
+									      </div>
+									      <div class="modal-footer"> <!-- Commets in panel -->
+									      	<div class="comments" ng-controller="COMMNTS CONTROLLR HERE">
+									      		<div class="panel panel-primary">
+												  <div class="panel-heading">User1</div>
+												  <div class="panel-body">
+												    These are some awesome comments given, all are stored in JSON
+												  </div>
+												</div>
+
+												<div class="panel panel-primary">
+												  <div class="panel-heading">User2</div>
+												  <div class="panel-body">
+												    These are some awesome comments given, all are stored in JSON
+												  </div>
+												</div>
+
+												<div class="panel panel-primary">
+												  <div class="panel-heading">User3</div>
+												  <div class="panel-body">
+												    These are some awesome comments given, all are stored in JSON
+												  </div>
+												</div>
+									      	</div>
+									      	
+									        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									        <button type="button" class="btn btn-primary">Add Comment</button>
+									      </div>
+									    </div>
+									  </div>
+									</div>
 								</article>
 							</div>
 

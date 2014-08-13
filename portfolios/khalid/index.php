@@ -45,7 +45,7 @@
 
 					<!-- Logo -->
 						<div id="logo">
-                            <span class="image avatar48"><img src="{{user.profile_picture}}" alt="" /></span>
+                            <span class="image avatar48"><img src="{{user.display_picture}}" alt="" /></span>
 							<h1 id="title">{{user.first_name}} {{user.last_name}}</h1>
 							<span class="byline">{{user.profession}}</span>
 						</div>
@@ -116,7 +116,7 @@
 										
 												<div ng-repeat="item in galleryData.albums" class="album" data-jgallery-album-title="{{item.name}}">
 				                   <div ng-repeat="imgs in item.images" on-finish-render>{{item.name}}
-				                   		<a href="{{imgs.url}}"><img src="{{imgs.thumb}}" alt=""  data-jgallery-bg-color="#3e3e3e" data-jgallery-text-color="#fff" /></a>
+				                   		<a href="{{imgs.url}}"><img src="{{imgs.thumb}}" alt=""  data-jgallery-bg-color="{{imgs.color}}" data-jgallery-text-color="#fff" /></a>
 														</div>
 												</div>
 				           </div>

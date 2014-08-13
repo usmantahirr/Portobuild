@@ -121,8 +121,8 @@ class Image extends MY_Controller
 
           $this->image_lib->resize();
           $this->image_lib->clear();
-          
-          // Update record
+         
+
           $now = date('Y-m-d H:i:s');
           $image_data = array(
             'name'           => $this->input->post('name'),
@@ -136,7 +136,8 @@ class Image extends MY_Controller
             'full_path'      => $upload_info['full_path'],
             'published'      => $this->input->post('published'),
             'updated_at'     => $now,
-            'updated_by'     => $this->get_user_id()
+            'updated_by'     => $this->get_user_id(),
+            'color'          => ''
           );
           
           $this->image_model->update($image_data, $image_id);
@@ -151,6 +152,11 @@ class Image extends MY_Controller
       }
       else
       {
+          $img=$data['image']->full_path;
+          $params = array('image' => $img);
+          $this->load->library('ColorsOfImage',$params);
+          $colors=$this->colorsofimage->getProminentColors();
+          
         // Update record
         $now = date('Y-m-d H:i:s');
         $image_data = array(
@@ -158,7 +164,8 @@ class Image extends MY_Controller
             'caption'        => $this->input->post('caption'),
             'published'      => $this->input->post('published'),
             'updated_at'     => $now,
-            'updated_by'     => $this->input->post('user_id')
+            'updated_by'     => $this->input->post('user_id'),
+            'color'          => $colors[0]
           );
         
         $this->image_model->update($image_data, $image_id);

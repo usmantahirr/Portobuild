@@ -9,6 +9,7 @@ $("#slider").slider({
   slide: function( event, ui ) {
 	$("#bw-val").text(ui.value + ' px');
 	console.log(ui.value);
+	console.log($("#editor").contents().find("#header"));
   }
 });
 

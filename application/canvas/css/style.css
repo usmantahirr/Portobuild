@@ -1,0 +1,27 @@
+.editingBar {
+	position: absolute;
+	width: 20%;
+	height: 100%;
+	min-width: 100px;
+	background: #ecf0f1;
+}
+.homeContainer {
+	margin-left: 20%;
+}
+#editor {
+	position: absolute;
+	overflow:hidden;
+	height:100%;
+	width:80%
+}
+
+.value {
+	margin: 10px 0px;
+}
+span.value {
+	color: blue;
+	font-weight: bold;
+}
+.sliders {
+	margin: 10px 0px;
+}

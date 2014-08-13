@@ -14,6 +14,12 @@
 			<link rel="stylesheet" href="css/style-wide.css" />
 		</noscript>
 
+		<!-- Gallery -->
+		<link rel="stylesheet" type="text/css" media="all" href="./gallery/css/font-awesome.min.css" />
+	    <link rel="stylesheet" type="text/css" media="all" href="./gallery/css/jgallery.min.css" />
+	    <script type="text/javascript" src="./gallery/js/tinycolor-0.9.16.min.js"></script>
+	    <script type="text/javascript" src="./gallery/js/jgallery.min.js"></script>
+
 		<!-- FancyBox Files -->
 		<script type="text/javascript" src="../../_lib/fancyBox/jquery.mousewheel-3.0.6.pack.js"></script>
 		<script type="text/javascript" src="../../_lib/fancyBox/jquery.fancybox.pack.js"></script>
@@ -95,7 +101,7 @@
 					</section>
 					
 				<!-- Portfolio -->
-					<section id="portfolio" class="two" ng-controller="GalleryController">
+					<section id="portfolio" class="two" ng-controller="UserController">
 						<div class="container">
 					
 							<header>
@@ -105,57 +111,17 @@
 							<p>{{user.portfolio_info}}</p>
 						
 							<div style="margin-left: 10px;">
-								<article class="item imageInstance">
-									<div class="croped">
-										<a data-toggle="modal" data-target="#myModal" href="#myModal" class="image full"><img src="../../uploads/2862401_thumb.jpg" alt=""></a>
-									</div>
-									<header>
-										<h3>{{item.name}}</h3>
-									</header>
-									<!-- Modal -->
-									<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-									  <div class="modal-dialog modal-lg">
-									    <div class="modal-content">
-									      <div class="modal-header">
-									        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-									        <h4 class="modal-title" id="myModalLabel">{{item.name}} Name</h4>
-									      </div>
-									      <div class="modal-body">
-									        <img src="../../uploads/2862401.jpg" alt="" style="width:100%">
-									      </div>
-									      <div class="modal-footer"> <!-- Commets in panel -->
-									      	<div class="comments" ng-controller="COMMNTS CONTROLLR HERE">
-									      		<div class="panel panel-primary">
-												  <div class="panel-heading">User1</div>
-												  <div class="panel-body">
-												    These are some awesome comments given, all are stored in JSON
-												  </div>
+								<article ng-controller="GalleryController">
+									<div id="gallery">
+										
+												<div ng-repeat="item in galleryData.albums" class="album" data-jgallery-album-title="{{item.name}}">
+				                   <div ng-repeat="imgs in item.images" on-finish-render>{{item.name}}
+				                   		<a href="{{imgs.url}}"><img src="{{imgs.thumb}}" alt=""  data-jgallery-bg-color="#3e3e3e" data-jgallery-text-color="#fff" /></a>
+														</div>
 												</div>
-
-												<div class="panel panel-primary">
-												  <div class="panel-heading">User2</div>
-												  <div class="panel-body">
-												    These are some awesome comments given, all are stored in JSON
-												  </div>
-												</div>
-
-												<div class="panel panel-primary">
-												  <div class="panel-heading">User3</div>
-												  <div class="panel-body">
-												    These are some awesome comments given, all are stored in JSON
-												  </div>
-												</div>
-									      	</div>
-									      	
-									        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									        <button type="button" class="btn btn-primary">Add Comment</button>
-									      </div>
-									    </div>
-									  </div>
-									</div>
+				           </div>
 								</article>
 							</div>
-
 						</div>
 					</section>
 
@@ -211,9 +177,7 @@
 						<ul class="menu">
 							<li>Design: <a href="#">PortoBuild</a></li>
 						</ul>
-					</div>
-				
+					</div>	
 			</div>
-
 	</body>
 </html>

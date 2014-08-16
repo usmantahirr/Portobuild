@@ -137,9 +137,45 @@
           ?>
           <div class="row">
             <div class="col-sm-5 col-sm-offset-3">
+              <img class="img-rounded" src="<?php echo $portfolio_details->profile_picture; ?>" height='160' width='150'>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-5 col-sm-offset-3">
               <?php echo form_label('Upload display picture of your Portfolio <br/><small>*   it can be company logo</small>', 'userfile'); ?>
-              <input type="file" name="userfile" size="20" />
+              <input type="file" name="files[]" size="20"/>
 
+              <br /><br />
+              <hr>
+            </div>
+          </div>
+          <br/>
+          
+          <div class="row">
+            <div class="col-sm-5 col-sm-offset-3">
+              <h2>Upload Your Best Two Photos <small>photo must 900 X 600 or higher</small></h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-5 col-sm-offset-3">
+              <img class="img-rounded" src="<?php echo $portfolio_details->best_pic_1; ?>" height='160' width='400'>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-5 col-sm-offset-3">
+              <input type="file" name="files[]" size="20" />
+              <br /><br />
+            </div>
+          </div>
+          <br/>
+          <div class="row">
+            <div class="col-sm-5 col-sm-offset-3">
+              <img class="img-rounded" src="<?php echo $portfolio_details->best_pic_2; ?>" height='160' width='400'>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-5 col-sm-offset-3">
+              <input type="file" name="files[]" size="20" />
               <br /><br />
             </div>
           </div>
@@ -148,7 +184,7 @@
             <div class="col-sm-5 col-sm-offset-3">
             <?php
                 
-                $att=array('name'=>'define_yourself','id'=>'define_yourself','type'=>'text','class'=>'form-control','placeholder'=>'Define Your Self in 100 characters','rows'=>'2','cols'=>'50');  
+                $att=array('name'=>'define_yourself','id'=>'define_yourself','type'=>'text','class'=>'form-control','placeholder'=>'Define Your Self in 100 characters','rows'=>'2','cols'=>'50','value'=>$portfolio_details->define_yourself);  
                 echo form_textarea($att);
                 //echo form_input($att);
             ?>
@@ -158,7 +194,7 @@
             <div class="col-sm-5 col-sm-offset-3">
             <?php
                 echo form_label('About me', 'about_me');
-                $att=array('name'=>'about_me','id'=>'about_me','type'=>'text','class'=>'form-control','placeholder'=>'Define Your Self in 100 characters','rows'=>'3','cols'=>'50');  
+                $att=array('name'=>'about_me','id'=>'about_me','type'=>'text','class'=>'form-control','placeholder'=>'Define Your Self in 100 characters','rows'=>'3','cols'=>'50','value'=>$portfolio_details->about_me);  
                 echo form_textarea($att);
                 //echo form_input($att);
             ?>
@@ -168,7 +204,7 @@
             <div class="col-sm-5 col-sm-offset-3">
             <?php
                 echo form_label('Profession', 'profession');
-                $att=array('name'=>'profession','id'=>'profession','type'=>'text','class'=>'form-control','placeholder'=>'Hey! tell me your profession...');  
+                $att=array('name'=>'profession','id'=>'profession','type'=>'text','class'=>'form-control','placeholder'=>'Hey! tell me your profession...','value'=>$portfolio_details->profession);  
                 echo form_input($att);
             ?>
             </div>
@@ -177,7 +213,7 @@
             <div class="col-sm-5 col-sm-offset-3">
             <?php
                 echo form_label('Phone Number', 'phone_number');
-                $att=array('name'=>'phone_number','id'=>'phone_number','type'=>'text','class'=>'form-control','placeholder'=>'Enter your number here...');  
+                $att=array('name'=>'phone_number','id'=>'phone_number','type'=>'text','class'=>'form-control','placeholder'=>'Enter your number here...','value'=>$portfolio_details->phone_number);  
                 echo form_input($att);
             ?>
             </div>
@@ -187,7 +223,7 @@
             <div class="col-sm-5 col-sm-offset-3">
             <?php
                 echo form_label('Adrress 1', 'address1');
-                $att=array('name'=>'address1','id'=>'address1','type'=>'text','class'=>'form-control','placeholder'=>'Enter your Permanent address...','rows'=>'2','cols'=>'50');  
+                $att=array('name'=>'address1','id'=>'address1','type'=>'text','class'=>'form-control','placeholder'=>'Enter your Permanent address...','rows'=>'2','cols'=>'50','value'=>$portfolio_details->address_1);  
                 echo form_textarea($att);
             ?>
             </div>
@@ -196,7 +232,7 @@
             <div class="col-sm-5 col-sm-offset-3">
             <?php
                 echo form_label('Adrress 2', 'address2');
-                $att=array('name'=>'address2','id'=>'address1','type'=>'text','class'=>'form-control','placeholder'=>'Enter your current or secondary address...','rows'=>'2','cols'=>'50');  
+                $att=array('name'=>'address2','id'=>'address1','type'=>'text','class'=>'form-control','placeholder'=>'Enter your current or secondary address...','rows'=>'2','cols'=>'50','value'=>$portfolio_details->address_2);  
                 echo form_textarea($att);
             ?>
             </div>
@@ -205,7 +241,7 @@
             <div class="col-sm-5 col-sm-offset-3">
             <?php
                 echo form_label('Portfolio information', 'Portfolio_info');
-                $att=array('name'=>'Portfolio_info','id'=>'Portfolio_info','type'=>'text','class'=>'form-control','placeholder'=>'Say something about your portfolio','rows'=>'3','cols'=>'50');  
+                $att=array('name'=>'Portfolio_info','id'=>'Portfolio_info','type'=>'text','class'=>'form-control','placeholder'=>'Say something about your portfolio','rows'=>'3','cols'=>'50','value'=>$portfolio_details->portfolio_info);  
                 echo form_textarea($att);
             ?>
             </div>
@@ -219,7 +255,7 @@
             <div class="col-sm-5 col-sm-offset-3">
             <?php
                 echo form_label('Contact information', 'contact_info');
-                $att=array('name'=>'contact_info','id'=>'contact_info','type'=>'text','class'=>'form-control','placeholder'=>'Say something about your Conact','rows'=>'3','cols'=>'50');  
+                $att=array('name'=>'contact_info','id'=>'contact_info','type'=>'text','class'=>'form-control','placeholder'=>'Say something about your Conact','rows'=>'3','cols'=>'50','value'=>$portfolio_details->contact_info);  
                 echo form_textarea($att);
             ?>
             </div>
@@ -228,7 +264,7 @@
             <div class="col-sm-5 col-sm-offset-3">
             <?php
                 echo form_label('Facebook Id', 'facebook_id');
-                $att=array('name'=>'facebook_id','id'=>'facebook_id','type'=>'text','class'=>'form-control','placeholder'=>'Enter your facebook id...');  
+                $att=array('name'=>'facebook_id','id'=>'facebook_id','type'=>'text','class'=>'form-control','placeholder'=>'Enter your facebook id...','value'=>$portfolio_details->facebook_id);  
                 echo form_input($att);
             ?>
             </div>
@@ -238,7 +274,7 @@
             <div class="col-sm-5 col-sm-offset-3">
             <?php
                 echo form_label('Twitter Id', 'twitter_id');
-                $att=array('name'=>'twitter_id','id'=>'twitter_id','type'=>'text','class'=>'form-control','placeholder'=>'Enter your twitter id...');  
+                $att=array('name'=>'twitter_id','id'=>'twitter_id','type'=>'text','class'=>'form-control','placeholder'=>'Enter your twitter id...','value'=>$portfolio_details->twitter_id);  
                 echo form_input($att);
             ?>
             </div>
@@ -248,7 +284,7 @@
             <div class="col-sm-5 col-sm-offset-3">
             <?php
                 echo form_label('dribble Id', 'dribble_id');
-                $att=array('name'=>'dribble_id','id'=>'dribble_id','type'=>'text','class'=>'form-control','placeholder'=>'Enter your dribble id...');  
+                $att=array('name'=>'dribble_id','id'=>'dribble_id','type'=>'text','class'=>'form-control','placeholder'=>'Enter your dribble id...','value'=>$portfolio_details->dribbble_id);  
                 echo form_input($att);
             ?>
             </div>

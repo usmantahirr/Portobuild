@@ -64,10 +64,19 @@
           
         <div class="col-md-4">
           <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search">
+              <input type="text" id="search-box" class="form-control" placeholder="Search username here..">
+              <div class="dropdown">
+                <a class="dropdown-toggle hidden" id="dropdownMenu1" href="#">Dropdown trigger</a>
+                <ul id="dropdown-list" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                  
+                  <li role="presentation" class="divider"></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">View All results</a></li>
+                </ul>
+              </div>
               <span class="input-group-btn">
                 <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
               </span>
+              
             </div><!-- /input-group -->
           </div> <!-- Search Bar Div end -->
         <div class="pull-left">
@@ -511,11 +520,30 @@
             jQuery.ajax("http://portobuild.dev/php/chat/chat.php?action=setSession&username="+user.value);
             //window.alert(user.value);
         </script>
+        <script type="text/javascript">
+        $( "#search-box" ).keyup(function() {
+              jQuery("a.dropdown-toggle").dropdown("toggle");
+              var my_val=jQuery("#search-box").val();
+              var value1="http://portobuild.dev/search/getRecords/".concat(my_val);
+              jQuery('#dropdown-list').html('');
+              jQuery.post( value1,  function( data ) {
+               var jsonObj=JSON.parse(data);
+               for(var i=0;i<jsonObj.length;i++){
+                jQuery('#dropdown-list').prepend("<li role='presentation'><a role='menuitem' tabindex='-1' id='search-res-".concat(i).concat("' href=''></a></li>"));
+               jQuery('#search-res-'.concat(i)).attr('href','http://portobuild.dev/'.concat(jsonObj[i].username));
+               jQuery('#search-res-'.concat(i)).html("<img src='".concat(jsonObj[i].display_picture).concat("' id='search-res-1-img' height='50' width='50'/><span class='h4'> ").concat(jsonObj[i].first_name).concat("  ").concat(jsonObj[i].last_name).concat("</span><small> ").concat(jsonObj[i].profession).concat("</small>"));
+               }
+             });
+          });
+        
+        
+        </script>
         
     <!-- FancyBox Files -->
     <script type="text/javascript" src="<?php echo base_url(); ?>_lib/fancyBox/jquery.mousewheel-3.0.6.pack.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>_lib/fancyBox/jquery.fancybox.pack.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>_lib/jquery.easing.1.3.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>js/chat.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>_lib/fancyBox/jquery.fancybox.css" media="screen" />
   </body>

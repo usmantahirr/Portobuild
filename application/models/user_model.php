@@ -155,5 +155,9 @@ class User_model extends MY_Model
   public function update_profile_picture($picture){
     $this->db->query("update user set display_picture = '".$picture."' where username='".$this->session->userdata('username')."'");
   }
+  public function getSearchResult($word){
+    $q=$this->db->query("SELECT pd.`profession` ,us.`username`,us.`first_name`,us.`last_name`,us.`display_picture` FROM `portfolio_details` pd inner join `user` us on pd.username=us.username where us.username like '".$word."%'");
+    return $q->result();
+  }
 
 }

@@ -107,21 +107,21 @@
 							<header>
 								<h2>Portfolio</h2>
 							</header>
-							
+
 							<p>{{user.portfolio_info}}</p>
-						
+
 							<div style="margin-left: 10px;">
 								<article ng-controller="GalleryController">
 									<div id="gallery">
-										
-												<div ng-repeat="item in galleryData.albums" class="album" data-jgallery-album-title="{{item.name}}">
-				                   <div ng-repeat="imgs in item.images" on-finish-render>{{item.name}}
-				                   		<a href="{{imgs.url}}"><img src="{{imgs.thumb}}" alt=""  data-jgallery-bg-color="{{imgs.color}}" data-jgallery-text-color="#fff" /></a>
-														</div>
-												</div>
-				           </div>
+									    <div ng-repeat="item in galleryData.albums" class="album" data-jgallery-album-title="{{item.name}}">
+				                            <div ng-repeat="imgs in item.images" on-finish-render>{{item.name}}
+				                                <a href="{{imgs.url}}"><img src="{{imgs.thumb}}" alt=""  data-jgallery-bg-color="{{imgs.color}}" data-jgallery-text-color="#fff" /></a>
+								            </div>
+								        </div>
+				                    </div>
 								</article>
 							</div>
+
 						</div>
 					</section>
 

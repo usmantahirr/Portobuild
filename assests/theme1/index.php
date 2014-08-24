@@ -131,49 +131,43 @@
 					</section>
 			
 				<!-- Contact -->
-					<section id="contact" class="four" ng-controller="UserController">
-						<div class="container">
+				<section id="contact" class="four" ng-controller="UserController">
+					<div class="container">
 
-							<header>
-								<h2>Contact</h2>
-							</header>
+						<header>
+							<h2>Contact</h2>
+						</header>
 
-							<p>{{user.contactWelcomeNote}}</p>
-							
-							<form method="post" action="#">
-								<div class="row half">
-									<div class="6u"><input type="text" class="text" name="name" placeholder="Name" /></div>
-									<div class="6u"><input type="text" class="text" name="email" placeholder="Email" /></div>
+						<p>{{user.contactWelcomeNote}}</p>
+						
+						<form method="post" action="#">
+							<div class="row half">
+								<div class="6u"><input type="text" class="text" name="name" placeholder="Name" /></div>
+								<div class="6u"><input type="text" class="text" name="email" placeholder="Email" /></div>
+							</div>
+							<div class="row half">
+								<div class="12u">
+									<textarea name="message" placeholder="Message"></textarea>
 								</div>
-								<div class="row half">
-									<div class="12u">
-										<textarea name="message" placeholder="Message"></textarea>
-									</div>
+							</div>
+							<div class="row">
+								<div class="12u">
+									<a href="#" class="button submit">Send Message</a>
 								</div>
-								<div class="row">
-									<div class="12u">
-										<a href="#" class="button submit">Send Message</a>
-									</div>
-								</div>
-							</form>
-
-						</div>
-					</section>
-			
+							</div>
+						</form>
+					</div>
+				</section>
 			</div>
-
 		<!-- Footer -->
 			<div id="footer">
-				
 				<!-- Copyright -->
-					<div class="copyright">
-						<p>&copy; 2014 Usman Tahir. All rights reserved.</p>
-						<ul class="menu">
-							<li>Design: <a href="#">PortoBuild</a></li>
-						</ul>
-					</div>
-				
+				<div class="copyright">
+					<p>&copy; 2014 Usman Tahir. All rights reserved.</p>
+					<ul class="menu">
+						<li>Design: <a href="#">PortoBuild</a></li>
+					</ul>
+				</div>
 			</div>
-
 	</body>
 </html>

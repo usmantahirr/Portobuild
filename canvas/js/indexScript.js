@@ -4,6 +4,12 @@ $( "#accordion" ).accordion({ heightStyle: "full" });
 $( "#accordion" ).accordion( "option", "heightStyle", "full" );
 $( "#slider" ).slider();
 
+var frameDocument
+$('#editor').load(function() {
+    console.log( "ready!" );
+    frameDocument = $("#editor").contents();
+});
+
 /* Border Style Slider */
 $("#slider").slider({
   slide: function( event, ui ) {
@@ -78,3 +84,35 @@ $("#mrl-slider").slider({
 	console.log(ui.value);
   }
 });
+
+/* CSS3 Attrs */
+/* Box Shadow */
+/* h-shadow */
+$("#h-sh-slider").slider({
+  slide: function( event, ui ) {
+	$("#h-sh-val").text(ui.value + ' px');
+	console.log(ui.value);
+  }
+});
+/* v-shadow */
+$("#v-sh-slider").slider({
+  slide: function( event, ui ) {
+	$("#v-sh-val").text(ui.value + ' px');
+	console.log(ui.value);
+  }
+});
+/* blr */
+$("#blr-sh-slider").slider({
+  slide: function( event, ui ) {
+	$("#blr-sh-val").text(ui.value + ' px');
+	console.log(ui.value);
+  }
+});
+/* spread */
+$("#spread-sh-slider").slider({
+  slide: function( event, ui ) {
+	$("#spread-sh-val").text(ui.value + ' px');
+	console.log(ui.value);
+  }
+});
+/* color */

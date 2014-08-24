@@ -4,7 +4,8 @@
 
     <div class="signUpForm">
     <?php
-        echo form_open('auth/register');
+        $attributes = array('id' => 'signup-form');
+        echo form_open('auth/register',$attributes);
 
           if (isset($login_error)) {
                   echo '<div class="alert alert-error"><strong>' . $login_error . '</strong></div>';
@@ -26,14 +27,16 @@
                         <div class="row">
                             <div class="large-6 columns">
                             <?php
-                                echo form_label('First Name', 'first_name');
-                                echo form_input('first_name');
+                                echo form_label('First Name');
+                                $att=array('name'=>'first_name','id'=>'first_name','type'=>'text', 'class'=>'validate[required,minSize[6]]');
+                                echo form_input($att);
                                 ?>
                             </div>
                             <div class="large-6 columns">
                             <?php    
-                                echo form_label('Last Name', 'last_name');
-                                echo form_input('last_name');
+                                echo form_label('Last Name');
+                                $att=array('name'=>'last_name','id'=>'last_name','type'=>'text', 'class'=>'validate[required,minSize[6]]');
+                                echo form_input($att);
                             ?>
                             </div>
                         </div>
@@ -46,25 +49,40 @@
                         <div class="row">
                             <div class="large-6 columns">
                                 <?php  
-                                    echo form_label('Email', 'email');
-                                    echo form_input('email');
+                                    
+                                    $att=array('name'=>'email','id'=>'email','type'=>'email', 'class'=>'validate[required,custom[email]]');  
+                                    echo form_label('Email'); 
+                                    echo form_input($att);
                                 ?>
                                 
                             </div>
                             <div class="large-6 columns">
                                 <?php    
-                                    echo form_label('Username', 'username');
-                                    echo form_input('username');
+                                    echo form_label('Username');
+                                    $att=array('name'=>'username','id'=>'username','type'=>'text', 'class'=>'validate[required,minSize[10],custom[onlyLetterNumber]]');
+                                    echo form_input($att);
                                 ?>
                             </div>
                         </div>
 
                           <!-- Passowrd -->
-                        <div class="pasword-field">
-                            <?php  
-                                echo form_label('Password', 'password');
-                                echo form_password('password');
-                            ?>
+                        <div class="row">
+                            <div class="large-6 columns">
+                                <div class="pasword-field">
+                                    <?php  
+                                        echo form_label('Password');
+                                    $att=array('name'=>'password','id'=>'password','type'=>'password', 'class'=>'validate[required] text-input');
+                                    echo form_input($att);
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="large-6 columns">
+                                <?php
+                                     echo form_label('Repeat Password');
+                                    $att=array('name'=>'password2','id'=>'password2','type'=>'password', 'class'=>'validate[required,equals[password]] text-input');
+                                    echo form_input($att);
+                                ?>
+                            </div>
                         </div>
 
 
@@ -85,7 +103,7 @@
                                     </div>
                                     <div class="small-5 columns">
                                         <?php
-                                            $att=array('name'=>'min_rate','id'=>'min_rate','type'=>'number','placeholder'=>'Rate');  
+                                            $att=array('name'=>'min_rate','id'=>'min_rate','type'=>'number','placeholder'=>'Rate','class'=>'validate[required,custom[integer],min[1],max[1000]]');   
                                             echo form_input($att);
                                         ?>
                                     </div>
@@ -101,7 +119,7 @@
                                     </div>
                                     <div class="small-5 columns">
                                         <?php
-                                            $att=array('name'=>'max_rate','id'=>'max_rate','type'=>'number','placeholder'=>'Rate');  
+                                            $att=array('name'=>'max_rate','id'=>'max_rate','type'=>'number','placeholder'=>'Rate','class'=>'validate[required,custom[integer],min[5],max[10000]]');  
                                             echo form_input($att);
                                         ?>
                                     </div>
@@ -122,7 +140,7 @@
                                     </div>
                                     <div class="small-8 columns">
                                         <?php
-                                            $att=array('name'=>'from_time','id'=>'from_time','pattern'=>'number','type'=>'time','placeholder'=>'Start Time GMT-00');  
+                                            $att=array('name'=>'from_time','id'=>'from_time','pattern'=>'number','type'=>'time','placeholder'=>'Start Time GMT-00','class'=>'validate[required]');  
                                             echo form_input($att);
                                         ?>
                                     </div>
@@ -135,7 +153,7 @@
                                     </div>
                                     <div class="small-8 columns">
                                         <?php
-                                            $att=array('name'=>'to_time','id'=>'to_time','pattern'=>'number','type'=>'time','placeholder'=>'pEnd Time GMT-00');  
+                                            $att=array('name'=>'to_time','id'=>'to_time','pattern'=>'number','type'=>'time','placeholder'=>'pEnd Time GMT-00','class'=>'validate[required]');  
                                             echo form_input($att);
                                         ?>
                                     </div>
@@ -148,16 +166,17 @@
                             <div class="large-6 columns">
                                 <?php
                                             echo form_label('Birth Date', 'birth_date');
-                                            $att=array('name'=>'birth_date','id'=>'birth_date','pattern'=>'number','type'=>'date');  
+                                            $att=array('name'=>'birth_date','id'=>'birth_date','pattern'=>'number','type'=>'date','class'=>'validate[required]');  
                                             echo form_input($att);
                                 ?>
                             </div>
                             <div class="large-6 columns">
                                 <?php
                                             echo form_label('Currunt Location', 'current_location');
-                                            $att=array('name'=>'current_location','id'=>'current_location','type'=>'text','class'=>'controls','placeholder'=>'Search Box');  
+                                            $att=array('name'=>'current_location','id'=>'current_location','type'=>'text','class'=>'controls','placeholder'=>'Search Box','class'=>'validate[required]');  
                                             echo form_input($att);
                                 ?>
+
                             </div>
                         </div> <!-- Birth and Location Info -->
                     </fieldset>
@@ -178,6 +197,7 @@
                                 $att=array('value'=>'Continue & Login','type'=>'submit','class'=>'button small');  
                                 echo form_input($att);
                             ?>
+
                     </div>
                 </div>
             </div>
@@ -185,5 +205,24 @@
     </div>
     
 </body>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script>
+var map;
+function initialize() {
+  var mapOptions = {
+    zoom: 8,
+    center: new google.maps.LatLng(-34.397, 150.644)
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+        jQuery(document).ready(function(){
+            // binds form submission and fields to the validation engine
+            jQuery("#signup-form").validationEngine();
+        });
+</script>
+
 
 </html>

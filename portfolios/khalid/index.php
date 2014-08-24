@@ -81,21 +81,16 @@
 					<section id="top" class="one" ng-controller="UserController">
 						<div class="container">
 
-							<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
+							<a href="#" class="image featured"><img src="{{user.best_pic_1}}" alt="" /></a>
 
 							<header>
 								<h2 class="alt">This is <strong>{{user.first_name}} {{user.last_name}}</strong>. A <a href="#">{{user.profession}}</a>, Designer<br />
 								{{user.define_myself}}</h2>
 							</header>
 							
-							<p>Ligula scelerisque justo sem accumsan diam quis. Vitae natoque dictum 
-							etiam semper magnis enim feugiat convallis convallis egestas rhoncus ridiculus 
-							in quis risus curabitur tempor. Orci penatibus quisque laoreet condimentum 
-							sollicitudin accumsan elementum.</p>
+							<p>{{user.about_me}}</p>
 
-							<footer>
-								<a href="#portfolio" class="button scrolly">Magna Aliquam</a>
-							</footer>
+							
 
 						</div>
 					</section>
@@ -131,7 +126,7 @@
 							<header>
 								<h2>About Me</h2>
 							</header>
-							<a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
+							<a href="#" class="image featured"><img src="{{user.best_pic_2}}" alt="" /></a>
 							<p style="margin-top: 2em;">{{user.about_me}}</p>
 						</div>
 					</section>

@@ -34,40 +34,24 @@ if (!defined('BASEPATH'))
  * OTHER DEALINGS IN THE SOFTWARE.
  * 
  */
-class Portfolio_model extends MY_Model
+class Search extends MY_Controller
 {
   public function __construct()
   {
     parent::__construct();
-    $this->table_name = 'portfolio_details';
-  }
-  
-  /**
-   * Get used for theme.
-   * 
-   * @return type 
-   */
-  public function get_portfolio_details_by_username($username){
-
-    $q=$this->db->query("SELECT pd.`id`, pd.`uid`, pd.`username`, pd.`define_yourself`, pd.`profile_picture`,pd.`best_pic_1`,pd.`best_pic_2`, pd.`about_me`, pd.`define_myself`, pd.`portfolio_info`, pd.`contact_info`, pd.`phone_number`, pd.`address_1`, pd.`address_2`, pd.`facebook_id`, pd.`twitter_id`, pd.`dribbble_id`, pd.`profession` ,us.`id`,us.`uuid`,us.`email_address`,us.`password`,us.`username`,us.`first_name`,us.`last_name`,us.`min_rate`,us.`max_rate`,us.`from_time`,us.`to_time`,us.`birth_date`,us.`current_location`,us.`display_picture`,us.`is_active`,us.`is_admin`,us.`created_at`,us.`updated_at`,us.`last_logged_in`,us.`last_ip` FROM `portfolio_details` pd inner join `user` us on pd.username=us.username
-    where pd.username='".$username."'");
-    foreach ($q->result() as $key=>$row) {
-    return json_encode($row);
-      
+    if ($this->is_logged_in() == FALSE)
+    {
+      redirect('auth');
+    }
+    else
+    {
+      $this->load->model('user_model');
     }
   }
-    /*
-    used for form purposes
-  */
-  public function get_by_username($username)
-  {
-    $q = $this->db->get_where($this->table_name, array('username' => $username));
-    return $q->row();
+  public function getRecords($word){
+    $res=$this->user_model->getSearchResult($word);
+    echo json_encode($res);
   }
   
   
-
-
-  
- 
 }

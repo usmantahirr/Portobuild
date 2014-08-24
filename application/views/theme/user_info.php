@@ -140,7 +140,8 @@
           </div>
         </div>
         <?php
-        echo form_open_multipart('theme/save_details');
+         $attributes = array('id' => 'themeInfo-form');
+          echo form_open_multipart('theme/save_details',$attributes);
 
 
           ?>
@@ -192,8 +193,8 @@
           <div class="row">
             <div class="col-sm-5 col-sm-offset-3">
             <?php
-                
-                $att=array('name'=>'define_yourself','id'=>'define_yourself','type'=>'text','class'=>'form-control','placeholder'=>'Define Your Self in 100 characters','rows'=>'2','cols'=>'50','value'=>$portfolio_details->define_yourself);  
+                echo form_label('Define me', 'define_yourself');
+                $att=array('name'=>'define_yourself','id'=>'define_yourself','type'=>'text','class'=>'form-control validate[required,max[100]','placeholder'=>'Define Your Self in 100 characters','rows'=>'2','cols'=>'50','value'=>$portfolio_details->define_yourself);  
                 echo form_textarea($att);
                 //echo form_input($att);
             ?>
@@ -203,7 +204,7 @@
             <div class="col-sm-5 col-sm-offset-3">
             <?php
                 echo form_label('About me', 'about_me');
-                $att=array('name'=>'about_me','id'=>'about_me','type'=>'text','class'=>'form-control','placeholder'=>'Define Your Self in 100 characters','rows'=>'3','cols'=>'50','value'=>$portfolio_details->about_me);  
+                $att=array('name'=>'about_me','id'=>'about_me','type'=>'text','class'=>'form-control validate[required,max[200]]','placeholder'=>'Define Your Self in 200 characters','rows'=>'3','cols'=>'50','value'=>$portfolio_details->about_me);  
                 echo form_textarea($att);
                 //echo form_input($att);
             ?>
@@ -213,7 +214,7 @@
             <div class="col-sm-5 col-sm-offset-3">
             <?php
                 echo form_label('Profession', 'profession');
-                $att=array('name'=>'profession','id'=>'profession','type'=>'text','class'=>'form-control','placeholder'=>'Hey! tell me your profession...','value'=>$portfolio_details->profession);  
+                $att=array('name'=>'profession','id'=>'profession','type'=>'text','class'=>'form-control validate[required]','placeholder'=>'Hey! tell me your profession...','value'=>$portfolio_details->profession);  
                 echo form_input($att);
             ?>
             </div>
@@ -499,7 +500,6 @@
     <div class="clearfix"></div>
         
     <!-- All JS Files -->
-    <script src="<?php echo base_url(); ?>_lib/jquery-1.11.0.min.js"></script>
     <script src="<?php echo base_url(); ?>_lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url(); ?>js/navigationScript.js"></script>
         
@@ -545,6 +545,13 @@
     <script type="text/javascript" src="<?php echo base_url(); ?>_lib/jquery.easing.1.3.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>js/chat.js"></script>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>_lib/fancyBox/jquery.fancybox.css" media="screen" />
+    <link rel="stylesheet" media="all" href="<?php echo base_url(); ?>css/validationEngine.jquery.css" type="text/css"/>
+    
+    <script>
+        jQuery(document).ready(function(){
+            // binds form submission and fields to the validation engine
+            jQuery("#themeInfo-form").validationEngine();
+        });
+</script>
   </body>
 </html>

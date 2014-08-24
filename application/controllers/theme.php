@@ -116,6 +116,10 @@ class Theme extends MY_Controller
     echo $this->portfolio_model->get_portfolio_details_by_username($username);
   }
   public function user_info(){
+    if($this->session->userdata('username')==null){
+      redirect('auth/login');
+      die;
+    }
     $uri = $this->uri->segment(3);
     $offset = ( ! empty($uri) && is_numeric($uri)) ? $uri : 0;
     $per_page = 10;

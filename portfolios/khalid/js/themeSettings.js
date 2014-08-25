@@ -26,8 +26,6 @@ function removeLinks() {
     $("#links").remove();    
 }
 
-
-
 /* Angular Settings */
 
 var themeDataLoad = angular.module('SideMenuTheme', []).directive('onFinishRender', function ($timeout) {

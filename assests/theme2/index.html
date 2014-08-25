@@ -16,6 +16,23 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
 		<!--[if lte IE 7]><link rel="stylesheet" href="css/ie7.css" /><![endif]-->
+		
+		<!-- Gallery -->
+		<link rel="stylesheet" type="text/css" media="all" href="./gallery/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" media="all" href="./gallery/css/jgallery.min.css" />
+    <script type="text/javascript" src="./gallery/js/tinycolor-0.9.16.min.js"></script>
+    <script type="text/javascript" src="./gallery/js/jgallery.min.js"></script>
+
+		<!-- FancyBox Files -->
+		<script type="text/javascript" src="../../_lib/fancyBox/jquery.mousewheel-3.0.6.pack.js"></script>
+		<script type="text/javascript" src="../../_lib/fancyBox/jquery.fancybox.pack.js"></script>
+		<script type="text/javascript" src="../../_lib/jquery.easing.1.3.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../_lib/fancyBox/jquery.fancybox.css" media="screen" />
+		
+		<script type="text/javascript" src="modal/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="modal/css/bootstrap.css" media="screen" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
 
 		<!-- Angular Includes -->
 		<script type="text/javascript" src="../../_lib/angular.min.js"></script>
@@ -37,7 +54,7 @@
 				<article class="container" id="intro">
 					<div class="row">
 						<div class="4u">
-							<span class="me image image-full"><img src="{{user.profile_picture}}" alt="" /></span>
+							<span class="me image image-full"><img src="{{user.display_picture}}" alt="" /></span>
 						</div>
 						<div class="8u">
 							<header>
@@ -57,20 +74,16 @@
 						<h2>Portfolio</h2>
 						<span>{{user.portfolio_info}}</span>
 					</header>
-					<div class="container" ng-controller="GalleryController">
-						<div class="row">
-							<div class="12u">
-							</div>
-						</div>
-						<div class="row" ng-controller="GalleryController">							
-							<div class="4u item imageInstance" ng-repeat="item in galleryImages">
-								<article class="box box-style2">
-									<a href="{{item.src}}" class="image image-full"><img src="{{item.src}}" alt="" /></a>
-									<h3>{{item.name}}</h3>
-									<p>{{item.caption}}</p>
-								</article>
-							</div>
-						</div>
+					<div style="margin-left: 10px;">
+						<article ng-controller="GalleryController">
+							<div id="gallery">
+							    <div ng-repeat="item in galleryData.albums" class="album" data-jgallery-album-title="{{item.name}}">
+		                <div ng-repeat="imgs in item.images" on-finish-render>{{item.name}}
+		                	<a href="{{imgs.url}}"><img src="{{imgs.thumb}}" alt=""  data-jgallery-bg-color="{{imgs.color}}" data-jgallery-text-color="#fff" /></a>
+						      	</div>
+						     	</div>
+		          </div>
+						</article>
 					</div>
 					<footer>
 						<a href="#contact" class="button button-big">Get in touch with me</a>
@@ -84,13 +97,13 @@
 						<h2>About</h2>
 						<span>{{user.about_me}}</span>
 					</header>
-					<div class="container">
+					
 						<div class="row">
 							<div class="12u">
-								<img src="images/f1.jpg" alt="" />
+								<img style="width: 100%;" src="{{user.best_pic_1}}" alt="" />
 							</div>
 						</div>
-					</div>
+					
 					<footer>
 						<a href="#portfolio" class="button button-big">look for my Work</a>
 					</footer>
@@ -171,7 +184,5 @@
 					</footer>
 				</article>
 			</div>
-
-
 	</body>
 </html>

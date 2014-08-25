@@ -1,6 +1,7 @@
 *.DS_Store
 *.htaccess
 *.idea/
+pb.esproj
 /bower_components/*
 /node_modules/*
 /nbproject/*

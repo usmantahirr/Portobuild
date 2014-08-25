@@ -173,51 +173,6 @@ $(document).ready(function() {
     }
   });
   $( "#sortable" ).disableSelection();
-  
-  $('#file_upload').uploadify({
-    'uploader'       : '<?php echo base_url(); ?>flash/uploadify.swf',
-    'script'         : '<?php echo base_url(); ?>index.php/api/upload/<?php echo $album->id; ?>',
-    'cancelImg'      : '<?php echo base_url(); ?>images/cancel.png',
-    'folder'         : '/uploads',
-    'auto'           : false,
-    'multi'          : true,
-    'scriptData'     : { 'user_id' : '<?php echo $user_id; ?>' },
-    'fileExt'        : '*.jpg;*.jpeg;*.gif;*.png',
-    'fileDesc'       : 'Image files',
-    'sizeLimit'      : 2097152, // 2MB
-    'wmode'          : 'opaque',
-    'onSelect'       : function(event, ID, fileObj) {
-      $('#upload-btn').show();
-    },
-    'onCancel'       : function(event, ID, fileObj) {
-      $('#upload-btn').hide();
-    },
-    'onError'        : function(event, ID, fileObj, errorObj) {
-      
-    },
-    'onComplete'     : function(event, ID, fileObj, response, data) {
-      var fileName = response;
-      $('#upload-btn').hide();
-      $('#new-images').show();
-      $.ajax({
-        url          : '<?php echo base_url(); ?>index.php/album/resize/<?php echo $album->id; ?>/' + response,
-        type         : 'POST',
-        cache        : false,
-        success      : function(response) {
-          if (response !== 'failure') {
-            var new_image = '<li><img src="<?php echo base_url(); ?>uploads/' + response + '" /><br />' + response + '</li>';
-            $('#new-image-list').append(new_image);
-          } else {
-            var fail_message = '<li>Thumbnail creation failed for: ' + fileObj.name + '</li>';
-            $('#new-image-list').append(fail_message);
-          }
-        },
-        error        : function(jqXHR, textStatus, errorThrown) {
-          alert('Error occurred when generating thumbnails.');
-        }
-      });
-    }
-  });
 });
 </script>
 </div><!--/.fluid-container-->

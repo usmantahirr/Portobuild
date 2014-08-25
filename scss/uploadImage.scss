@@ -2,6 +2,7 @@
 #imageUploaderContainer {
     background: url("../images/createAlbum/bg.jpg");
     background-position: center;
+    background-attachment: fixed;
 }
 
 #upload{
@@ -117,4 +118,7 @@
 
 #upload ul li.error p{
     color:red;
+}
+#sortable li:last-child {
+	margin-bottom: 70px;
 }

@@ -113,15 +113,19 @@ button.close {
               <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span></button>
             <strong>Hey!</strong> ' . $login_error . '</div>';
   }
-
-  echo form_label('Email Address');
-  $att=array('name'=>'email_address','id'=>'email_address','type'=>'email', 'class'=>'validate[required,custom[email]]');
-  echo form_input($att);
-
-  echo form_label('Password', 'password');
-  $att=array('name'=>'password','id'=>'password','type'=>'password', 'class'=>'validate[required]');
-  echo form_input($att);
   ?>
+  <fieldset>
+  <legend>Login</legend>
+  <?php   
+    echo form_label('Email Address');
+    $att=array('name'=>'email_address','id'=>'email_address','type'=>'email', 'class'=>'validate[required,custom[email]]');
+    echo form_input($att);
+
+    echo form_label('Password', 'password');
+    $att=array('name'=>'password','id'=>'password','type'=>'password', 'class'=>'validate[required]');
+    echo form_input($att);
+  ?>
+  </fieldset>
   <p>
   <?php
   echo form_button(array('id' => 'submit', 'value' => 'Login', 'name' => 'submit', 'type' => 'submit', 'content' => 'Sign In','class' => 'btn btn-primary btn-large'));

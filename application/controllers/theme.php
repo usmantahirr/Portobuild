@@ -54,6 +54,7 @@ class Theme extends MY_Controller
       $this->load->model('image_model');
       $this->load->model('feed_model');
 
+
   }
   
   /**
@@ -190,6 +191,8 @@ class Theme extends MY_Controller
 
     $account_details=$this->user_model->get_by_username($data['username']);
     $portfolio_details=$this->portfolio_model->get_by_username($data['username']);
+    if($portfolio_details==null)
+      $portfolio_details=$this->portfolio_model->get_by_username("demo");
     $data['portfolio_details']=$portfolio_details;
     $data['account_details']=$account_details;
 
@@ -230,9 +233,9 @@ class Theme extends MY_Controller
     $user_data['username']=$account_details->username;
     $config['upload_path'] = './uploads/';
     $config['allowed_types'] = 'gif|jpg|png';
-    $config['max_size'] = '100';
-    $config['max_width']  = '1024';
-    $config['max_height']  = '768';
+    $config['max_size'] = '10000';
+    $config['max_width']  = '5222';
+    $config['max_height']  = '3333';
     $this->load->library('upload',$config);
     $this->upload->initialize(array(
         
@@ -257,28 +260,28 @@ class Theme extends MY_Controller
       $user_data['best_pic_1']="http://portobuild.dev/uploads/".$data[1]['orig_name'];
       $user_data['best_pic_2']="http://portobuild.dev/uploads/".$data[2]['orig_name'];
 
-      $ini_filename = "./uploads/".$data[1]['orig_name'];
+      // $ini_filename = "./uploads/".$data[1]['orig_name'];
 
-      $im = imagecreatefromjpeg($ini_filename );
+      // $im = imagecreatefromjpeg($ini_filename );
 
-      $ini_x_size = getimagesize($ini_filename )[0];
-      $ini_y_size = getimagesize($ini_filename )[1];
-      $crop_measure = min($ini_x_size, $ini_y_size);
-      $to_crop_array = array('x' =>0 , 'y' => 0, 'width' => $ini_x_size, 'height'=> 600);
-      $thumb_im = imagecrop($im, $to_crop_array);
-      unlink($ini_filename);
-      imagejpeg($thumb_im, $ini_filename, 100);
+      // $ini_x_size = getimagesize($ini_filename )[0];
+      // $ini_y_size = getimagesize($ini_filename )[1];
+      // $crop_measure = min($ini_x_size, $ini_y_size);
+      // $to_crop_array = array('x' =>0 , 'y' => 0, 'width' => $ini_x_size, 'height'=> 600);
+      // $thumb_im = imagecrop($im, $to_crop_array);
+      // unlink($ini_filename);
+      // imagejpeg($thumb_im, $ini_filename, 100);
 
-      $ini_filename = "./uploads/".$data[2]['orig_name'];
-      $im = imagecreatefromjpeg($ini_filename );
+      // $ini_filename = "./uploads/".$data[2]['orig_name'];
+      // $im = imagecreatefromjpeg($ini_filename );
 
-      $ini_x_size = getimagesize($ini_filename )[0];
-      $ini_y_size = getimagesize($ini_filename )[1];
-      $crop_measure = min($ini_x_size, $ini_y_size);
-      $to_crop_array = array('x' =>0 , 'y' => 0, 'width' => $ini_x_size, 'height'=> 600);
-      $thumb_im = imagecrop($im, $to_crop_array);
-      unlink($ini_filename);
-      imagejpeg($thumb_im, $ini_filename, 100);
+      // $ini_x_size = getimagesize($ini_filename )[0];
+      // $ini_y_size = getimagesize($ini_filename )[1];
+      // $crop_measure = min($ini_x_size, $ini_y_size);
+      // $to_crop_array = array('x' =>0 , 'y' => 0, 'width' => $ini_x_size, 'height'=> 600);
+      // $thumb_im = imagecrop($im, $to_crop_array);
+      // unlink($ini_filename);
+      // imagejpeg($thumb_im, $ini_filename, 100);
 
       $account_details=$this->portfolio_model->get_by_username($this->session->userdata('username'));
       if($account_details!=null)
@@ -289,6 +292,67 @@ class Theme extends MY_Controller
       redirect('theme/user_info');
 
 
+  }
+  function change_theme(){
+    $this->load->view('theme/change_theme');
+  }
+  function replace_theme(){
+    $theme=$this->input->post('theme');
+    $this->my_delete("./portfolios/".$this->session->userdata('username'));
+    $zip = new ZipArchive;
+    if($theme=="theme1"){
+      if ($zip->open('./assests/theme1.zip') === TRUE) {
+          $zip->extractTo('./portfolios/');
+          $zip->close();
+          echo 'ok';
+      } else {
+          echo 'failed';
+      }
+      rename('./portfolios/theme1','./portfolios/'.$this->session->userdata('username'));
+    }
+    elseif ($theme=="theme2") {
+      if ($zip->open('./assests/theme2.zip') === TRUE) {
+          $zip->extractTo('./portfolios/');
+          $zip->close();
+          echo 'ok';
+      } else {
+          echo 'failed';
+      }
+      rename('./portfolios/theme2','./portfolios/'.$this->session->userdata('username'));
+    }
+    elseif ($theme=="theme3") {
+      if ($zip->open('./assests/theme3.zip') === TRUE) {
+          $zip->extractTo('./portfolios/');
+          $zip->close();
+          echo 'ok';
+      } else {
+          echo 'failed';
+      }
+      rename('./portfolios/theme3','./portfolios/'.$this->session->userdata('username'));
+    }
+    $this->session->set_userdata('theme_changed','Theme Succesfully Changed!');
+    redirect("album");
+  }
+  function my_delete($path)
+  {
+    if (is_dir($path) === true)
+    {
+        $files = array_diff(scandir($path), array('.', '..'));
+
+        foreach ($files as $file)
+        {
+            $this->my_delete(realpath($path) . '/' . $file);
+        }
+
+        return rmdir($path);
+    }
+
+    else if (is_file($path) === true)
+    {
+        return unlink($path);
+    }
+
+    return false;
   }
   
   

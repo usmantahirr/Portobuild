@@ -172,6 +172,22 @@ class Auth extends MY_Controller
       'uuid'            => $this->create_uuid(),
       'updated_at'      => $now);
       $this->load->model('user_model');
+
+      $this->load->helper('form');
+
+    $user_id = $this->user_model->get_by_username($user_data['username']);
+    $user_id_email = $this->user_model->get_by_email_address($user_data['email_address']);
+    if ($user_id !=null){
+      $data = array();
+      $data['username_error'] = 'Username not Available';
+      $this->load->view('auth/signup', $data);
+    }
+    if($user_id_email!=null){
+      $data = array();
+      $data['email_error'] = 'Account With This email is already exists!';
+      $this->load->view('auth/signup', $data);
+    }
+    else{
       
           
       $user_id = $this->user_model->create($user_data);
@@ -199,10 +215,13 @@ class Auth extends MY_Controller
 
         $this->session->set_flashdata('flash_message', "Successfully created feed.");
 
+
+
     
     	//load view when successfully registered on site and records are being entered in db.
       //$this->load->view('auth/register');
   	 redirect('theme/selector');
+    }
   }
   
   /**

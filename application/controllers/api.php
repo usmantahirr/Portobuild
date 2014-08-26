@@ -103,7 +103,6 @@ class Api extends MY_Controller
       $image_id = $this->image_model->create($image_data);
 
       $this->album_model->update(array('updated_at' => $now), $album_id);
-      
       echo $image_id;
     }
   }

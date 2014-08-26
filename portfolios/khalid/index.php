@@ -61,7 +61,7 @@
 						</nav>
 				</section>
 				
-				<section class="bottom">
+				<section class="bottom" ng-controller="UserController">
 					<!-- Social Icons -->
 						<ul class="icons">
 							<li><a href="http:\\{{user.facebook_id}}" class="fa fa-twitter solo"><span>Facebook</span></a></li>

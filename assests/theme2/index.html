@@ -19,9 +19,9 @@
 		
 		<!-- Gallery -->
 		<link rel="stylesheet" type="text/css" media="all" href="./gallery/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="./gallery/css/jgallery.min.css" />
-    <script type="text/javascript" src="./gallery/js/tinycolor-0.9.16.min.js"></script>
-    <script type="text/javascript" src="./gallery/js/jgallery.min.js"></script>
+	    <link rel="stylesheet" type="text/css" media="all" href="./gallery/css/jgallery.min.css" />
+	    <script type="text/javascript" src="./gallery/js/tinycolor-0.9.16.min.js"></script>
+	    <script type="text/javascript" src="./gallery/js/jgallery.min.js"></script>
 
 		<!-- FancyBox Files -->
 		<script type="text/javascript" src="../../_lib/fancyBox/jquery.mousewheel-3.0.6.pack.js"></script>
@@ -78,11 +78,11 @@
 						<article ng-controller="GalleryController">
 							<div id="gallery">
 							    <div ng-repeat="item in galleryData.albums" class="album" data-jgallery-album-title="{{item.name}}">
-		                <div ng-repeat="imgs in item.images" on-finish-render>{{item.name}}
-		                	<a href="{{imgs.url}}"><img src="{{imgs.thumb}}" alt=""  data-jgallery-bg-color="{{imgs.color}}" data-jgallery-text-color="#fff" /></a>
-						      	</div>
+		               		 		<div ng-repeat="imgs in item.images" on-finish-render>{{item.name}}
+		                				<a href="{{imgs.url}}"><img src="{{imgs.thumb}}" alt=""  data-jgallery-bg-color="{{imgs.color}}" data-jgallery-text-color="#fff" /></a>
+						      		</div>
 						     	</div>
-		          </div>
+		          			</div>
 						</article>
 					</div>
 					<footer>
@@ -149,29 +149,16 @@
 								</form>
 							</div>
 						</div>
-						<div class="row">
+						<div class="row" ng-controller="UserController">
 							<div class="12u">
 								<hr />
 								<h3>Find me on ...</h3>
 								<ul class="social">
-									<li class="twitter"><a href="http://twitter.com/n33co" class="fa fa-twitter"><span>Twitter</span></a></li>
-									<li class="facebook"><a href="#" class="fa fa-facebook"><span>Facebook</span></a></li>
-									<li class="dribbble"><a href="http://dribbble.com/n33" class="fa fa-dribbble"><span>Dribbble</span></a></li>
-									<li class="linkedin"><a href="#" class="fa fa-linkedin"><span>LinkedIn</span></a></li>
-									<li class="tumblr"><a href="#" class="fa fa-tumblr"><span>Tumblr</span></a></li>
-									<li class="googleplus"><a href="#" class="fa fa-google-plus"><span>Google+</span></a></li>
-									<li class="github"><a href="http://github.com/n33" class="fa fa-github"><span>Github</span></a></li>
-									<!--
-									<li class="rss"><a href="#" class="fa fa-rss"><span>RSS</span></a></li>
-									<li class="instagram"><a href="#" class="fa fa-instagram"><span>Instagram</span></a></li>
-									<li class="foursquare"><a href="#" class="fa fa-foursquare"><span>Foursquare</span></a></li>
-									<li class="skype"><a href="#" class="fa fa-skype"><span>Skype</span></a></li>
-									<li class="soundcloud"><a href="#" class="fa fa-soundcloud"><span>Soundcloud</span></a></li>
-									<li class="youtube"><a href="#" class="fa fa-youtube"><span>YouTube</span></a></li>
-									<li class="blogger"><a href="#" class="fa fa-blogger"><span>Blogger</span></a></li>
-									<li class="flickr"><a href="#" class="fa fa-flickr"><span>Flickr</span></a></li>
-									<li class="vimeo"><a href="#" class="fa fa-vimeo"><span>Vimeo</span></a></li>
-									-->
+									<li><a href="http:\\{{user.facebook_id}}" class="fa fa-twitter solo"><span>Facebook</span></a></li>
+									<li><a href="http:\\{{user.twitter_id}}" class="fa fa-facebook solo"><span>Twitter</span></a></li>
+									<li><a href="http:\\{{user.github_id}}" class="fa fa-github solo"><span>Github</span></a></li>
+									<li><a href="http:\\{{user.dribbble_id}}" class="fa fa-dribbble solo"><span>Dribbble</span></a></li>
+									<li><a href="http:\\{{user.email_address}}" class="fa fa-envelope solo"><span>Email</span></a></li>
 								</ul>
 								<hr />
 							</div>

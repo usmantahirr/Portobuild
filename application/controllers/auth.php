@@ -40,6 +40,7 @@ class Auth extends MY_Controller
   public function __construct()
   {
     parent::__construct();
+    error_reporting(0);
     // This app has run for the first time, install.
     if ( ! $this->db->table_exists('user'))
     {

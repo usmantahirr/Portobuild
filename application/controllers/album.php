@@ -39,6 +39,7 @@ class Album extends MY_Controller
   public function __construct()
   {
     parent::__construct();
+    error_reporting(0);
     if ($this->is_logged_in() == FALSE)
     {
       redirect('auth');

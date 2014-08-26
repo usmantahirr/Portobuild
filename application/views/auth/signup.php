@@ -28,14 +28,14 @@
                             <div class="large-6 columns">
                             <?php
                                 echo form_label('First Name');
-                                $att=array('name'=>'first_name','id'=>'first_name','type'=>'text', 'class'=>'validate[required,minSize[6]]');
+                                $att=array('name'=>'first_name','id'=>'first_name','type'=>'text', 'class'=>'validate[required,minSize[3]]');
                                 echo form_input($att);
                                 ?>
                             </div>
                             <div class="large-6 columns">
                             <?php    
                                 echo form_label('Last Name');
-                                $att=array('name'=>'last_name','id'=>'last_name','type'=>'text', 'class'=>'validate[required,minSize[6]]');
+                                $att=array('name'=>'last_name','id'=>'last_name','type'=>'text', 'class'=>'validate[required,minSize[3]]');
                                 echo form_input($att);
                             ?>
                             </div>
@@ -59,7 +59,7 @@
                             <div class="large-6 columns">
                                 <?php    
                                     echo form_label('Username');
-                                    $att=array('name'=>'username','id'=>'username','type'=>'text', 'class'=>'validate[required,minSize[10],custom[onlyLetterNumber]]');
+                                    $att=array('name'=>'username','id'=>'username','type'=>'text', 'class'=>'validate[required,minSize[6],custom[onlyLetterNumber]]');
                                     echo form_input($att);
                                 ?>
                             </div>

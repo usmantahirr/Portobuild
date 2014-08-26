@@ -1,5 +1,106 @@
 <!doctype html>
+<style type="text/css">
+  .alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.alert h4 {
+  margin-top: 0;
+  color: inherit;
+}
+.alert .alert-link {
+  font-weight: bold;
+}
+.alert > p,
+.alert > ul {
+  margin-bottom: 0;
+}
+.alert > p + p {
+  margin-top: 5px;
+}
+.alert-dismissable {
+  padding-right: 35px;
+}
+.alert-dismissable .close {
+  position: relative;
+  top: -2px;
+  right: -21px;
+  color: inherit;
+}
+.alert-success {
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+  color: #3c763d;
+}
+.alert-success hr {
+  border-top-color: #c9e2b3;
+}
+.alert-success .alert-link {
+  color: #2b542c;
+}
+.alert-info {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #31708f;
+}
+.alert-info hr {
+  border-top-color: #a6e1ec;
+}
+.alert-info .alert-link {
+  color: #245269;
+}
+.alert-warning {
+  background-color: #fcf8e3;
+  border-color: #faebcc;
+  color: #8a6d3b;
+}
+.alert-warning hr {
+  border-top-color: #f7e1b5;
+}
+.alert-warning .alert-link {
+  color: #66512c;
+}
+.alert-danger {
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+}
+.alert-danger hr {
+  border-top-color: #e4b9c0;
+}
+.alert-danger .alert-link {
+  color: #843534;
+}
+.close {
+  float: right;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1;
+  color: #000000;
+  text-shadow: 0 1px 0 #ffffff;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+}
+.close:hover,
+.close:focus {
+  color: #000000;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+button.close {
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+}
+</style>
 <html class="no-js" lang="en">
+
 <?php $this->load->view('header.php'); ?>
 
     <div class="signUpForm">
@@ -7,9 +108,14 @@
         $attributes = array('id' => 'signup-form');
         echo form_open('auth/register',$attributes);
 
-          if (isset($login_error)) {
-                  echo '<div class="alert alert-error"><strong>' . $login_error . '</strong></div>';
-          } ?>
+          if (isset($username_error)) {
+                  echo '<div class="alert alert-danger"><strong>' . $username_error . '</strong></div>';
+          } 
+          if (isset($email_error)) {
+                  echo '<div class="alert alert-danger"><strong>' . $email_error . '</strong></div>';
+          } 
+
+          ?>
   
 
            <div class="row fullWidth">
@@ -28,14 +134,14 @@
                             <div class="large-6 columns">
                             <?php
                                 echo form_label('First Name');
-                                $att=array('name'=>'first_name','id'=>'first_name','type'=>'text', 'class'=>'validate[required,minSize[6]]');
+                                $att=array('name'=>'first_name','id'=>'first_name','type'=>'text', 'class'=>'validate[required,minSize[3]]');
                                 echo form_input($att);
                                 ?>
                             </div>
                             <div class="large-6 columns">
                             <?php    
                                 echo form_label('Last Name');
-                                $att=array('name'=>'last_name','id'=>'last_name','type'=>'text', 'class'=>'validate[required,minSize[6]]');
+                                $att=array('name'=>'last_name','id'=>'last_name','type'=>'text', 'class'=>'validate[required,minSize[3]]');
                                 echo form_input($att);
                             ?>
                             </div>
@@ -59,7 +165,7 @@
                             <div class="large-6 columns">
                                 <?php    
                                     echo form_label('Username');
-                                    $att=array('name'=>'username','id'=>'username','type'=>'text', 'class'=>'validate[required,minSize[10],custom[onlyLetterNumber]]');
+                                    $att=array('name'=>'username','id'=>'username','type'=>'text', 'class'=>'validate[required,minSize[6],custom[onlyLetterNumber]]');
                                     echo form_input($att);
                                 ?>
                             </div>

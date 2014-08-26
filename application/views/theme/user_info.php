@@ -48,6 +48,9 @@
             <li class="galleries active-admin">
                 <a  href="<?php echo base_url(); ?>/theme/user_info">User Details</a>
             </li>
+            <li class="galleries">
+                <a href="<?php echo base_url(); ?>theme/change_theme">Change theme</a>
+            </li>
           </ul>
         </ul>
       </nav>

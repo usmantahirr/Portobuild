@@ -46,6 +46,9 @@
                         <li class="galleries">
                             <a href="<?php echo base_url(); ?>theme/user_info">User Details</a>
                         </li>
+                        <li class="galleries">
+                            <a href="<?php echo base_url(); ?>theme/change_theme">Change theme</a>
+                        </li>
                     </ul>
                 </ul>
             </nav>
@@ -110,6 +113,17 @@
                 <div class="clearfix"></div>
             </section>
             <div id="data-container">
+                <?php $msg=$this->session->userdata('theme_changed');if($msg!='') { ?>
+                <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="success"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <strong>Hey!</strong>  <?php
+                echo $this->session->userdata('theme_changed'); ?></div>
+            
+                <?php
+                $this->load->library('session');
+                $this->session->set_userdata('theme_changed','');
+                }
+                ?>
                 <a class="btn btn-primary" href="<?php echo site_url('feed/edit/' . $feed_id); ?>">Add albums to portfolio</a>
                 <a class="btn btn-primary" href="<?php echo site_url("album/create"); ?>">Create new album</a>
                 <div class="gallery">

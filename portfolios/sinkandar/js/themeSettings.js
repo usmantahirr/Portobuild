@@ -27,6 +27,7 @@ function removeLinks() {
 }
 
 /* Angular Settings */
+
 var themeDataLoad = angular.module('SideMenuTheme', []).directive('onFinishRender', function ($timeout) {
     return {
         restrict: 'A',
@@ -41,7 +42,7 @@ var themeDataLoad = angular.module('SideMenuTheme', []).directive('onFinishRende
 });
 
 themeDataLoad.controller('UserController', ['$scope', '$http', function($scope, $http) {
-	var myurl=document.URL;
+  var myurl=document.URL;
 	var stringURL=myurl.split("/");
 	var username=stringURL[4];
   $http.get('http://portobuild.dev/theme/get_details/'.concat(username)).success(function(data) {
@@ -50,18 +51,17 @@ themeDataLoad.controller('UserController', ['$scope', '$http', function($scope, 
 }]);
 
 themeDataLoad.controller('GalleryController', ['$scope', '$http', function($scope, $http) {
-var myurl=document.URL;
+  var myurl=document.URL;
 	var stringURL=myurl.split("/");
 	var username=stringURL[4];
   $http.get('http://portobuild.dev/api/myfeed_by_username/json/'.concat(username)).success(function(data) {
     $scope.galleryData = data;
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
-        $( function() {
-            $( '#gallery' ).jGallery( {
-                'mode': 'standard'
-            } );
-        } );
-    });
+	    $( function() {
+	        $( '#gallery' ).jGallery( {
+	            'mode': 'standard'
+	        } );
+	    } );
+	});
   });
 }]);
-

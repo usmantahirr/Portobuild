@@ -3,25 +3,25 @@
 	<head ng-controller="UserController">
 		<title>{{user.username}}</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,600,700" rel="stylesheet" />
-
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
 		<script src="js/jquery.min.js"></script>
-		<script src="js/config.js"></script>
+		<script src="js/jquery.dropotron.min.js"></script>
 		<script src="js/skel.min.js"></script>
+		<script src="js/skel-layers.min.js"></script>
+		<script src="js/init.js"></script>
 		<noscript>
-			<link rel="stylesheet" href="css/skel-noscript.css" />
+			<link rel="stylesheet" href="css/skel.css" />
 			<link rel="stylesheet" href="css/style.css" />
-			<link rel="stylesheet" href="css/style-desktop.css" />
+			<link rel="stylesheet" href="css/style-wide.css" />
 		</noscript>
-		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie9.css" /><![endif]-->
-		<!--[if lte IE 8]><script src="js/html5shiv.js"></script><link rel="stylesheet" href="css/ie8.css" /><![endif]-->
-		<!--[if lte IE 7]><link rel="stylesheet" href="css/ie7.css" /><![endif]-->
-		
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 		<!-- Gallery -->
 		<link rel="stylesheet" type="text/css" media="all" href="./gallery/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" media="all" href="./gallery/css/jgallery.min.css" />
-    <script type="text/javascript" src="./gallery/js/tinycolor-0.9.16.min.js"></script>
-    <script type="text/javascript" src="./gallery/js/jgallery.min.js"></script>
+	    <link rel="stylesheet" type="text/css" media="all" href="./gallery/css/jgallery.min.css" />
+	    <script type="text/javascript" src="./gallery/js/tinycolor-0.9.16.min.js"></script>
+	    <script type="text/javascript" src="./gallery/js/jgallery.min.js"></script>
 
 		<!-- FancyBox Files -->
 		<script type="text/javascript" src="../../_lib/fancyBox/jquery.mousewheel-3.0.6.pack.js"></script>
@@ -38,151 +38,129 @@
 		<script type="text/javascript" src="../../_lib/angular.min.js"></script>
 		<script type="text/javascript" src="js/themeSettings.js"></script>
 	</head>
-	<body>
-		<!-- Nav -->
-			<nav id="nav">
-				<ul class="container">
-					<li><a href="#intro">Intro</a></li>
-					<li><a href="#portfolio">Portfolio</a></li>
-					<li><a href="#about">About Me</a></li>
-					<li><a href="#contact">Contact</a></li>
-				</ul>
-			</nav>
+	<body ng-controller="UserController">
 
-		<!-- Home -->
-			<div class="wrapper wrapper-style1 wrapper-first" ng-controller="UserController">
-				<article class="container" id="intro">
-					<div class="row">
-						<div class="4u">
-							<span class="me image image-full"><img src="{{user.display_picture}}" alt="" /></span>
-						</div>
-						<div class="8u">
-							<header>
-								<h1>Hi. I'm <strong>{{user.first_name}} {{user.last_name}}</strong>.</h1>
-							</header>
-							<p>I am a <strong>{{user.profession}}</strong>, {{user.define_myself}}</p>
-							<a href="#portfolio" class="button button-big">Check my work</a>
-						</div>
-					</div>
-				</article>
+		<!-- Header -->
+			<div id="header" >
+						
+				<!-- Logo -->
+					<h1><a href="index.pph" id="logo"><em>Hii!!</em> I am "{{user.first_name}} {{user.last_name}}"</a></h1>
+				
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="#intro">Intro</a></li>
+							<li><a href="#portfolio">Portfolio</a></li>
+							<li><a href="#about">About Me</a></li>
+							<li><a href="#contact">Contact</a></li>
+						</ul>
+					</nav>
 			</div>
+			
+		<!-- Banner -->
+			<section id="banner" style="background-image: url('{{user.best_pic_1}}')">
+				<header>
+					<h2>I am a <strong>{{user.profession}}</strong>, {{user.define_myself}}</h2>
+					<a href="#portfolio" class="button">Check my work</a>
+				</header>
+			</section>
 
 		<!-- Portfolio -->
-			<div class="wrapper wrapper-style3" ng-controller="UserController">
+			<section class="wrapper style1">
 				<article id="portfolio">
-					<header>
+					<header class="major">
 						<h2>Portfolio</h2>
-						<span>{{user.portfolio_info}}</span>
+						<p>{{user.portfolio_info}}</p>
 					</header>
 					<div style="margin-left: 10px;">
 						<article ng-controller="GalleryController">
 							<div id="gallery">
 							    <div ng-repeat="item in galleryData.albums" class="album" data-jgallery-album-title="{{item.name}}">
-		                <div ng-repeat="imgs in item.images" on-finish-render>{{item.name}}
-		                	<a href="{{imgs.url}}"><img src="{{imgs.thumb}}" alt=""  data-jgallery-bg-color="{{imgs.color}}" data-jgallery-text-color="#fff" /></a>
-						      	</div>
+		               		 		<div ng-repeat="imgs in item.images" on-finish-render>{{item.name}}
+		                				<a href="{{imgs.url}}"><img src="{{imgs.thumb}}" alt=""  data-jgallery-bg-color="{{imgs.color}}" data-jgallery-text-color="#fff" /></a>
+						      		</div>
 						     	</div>
-		          </div>
+		          			</div>
 						</article>
 					</div>
 					<footer>
-						<a href="#contact" class="button button-big">Get in touch with me</a>
+						<a href="#contact" class="button button-big" style="margin: 30px 40%;">Get in touch with me</a>
 					</footer>
 				</article>
-			</div>
-		<!-- Work -->
-			<div class="wrapper wrapper-style2">
-				<article id="about" ng-controller="UserController">
-					<header>
-						<h2>About</h2>
-						<span>{{user.about_me}}</span>
-					</header>
-					
-						<div class="row">
-							<div class="12u">
-								<img style="width: 100%;" src="{{user.best_pic_1}}" alt="" />
-							</div>
-						</div>
-					
-					<footer>
-						<a href="#portfolio" class="button button-big">look for my Work</a>
-					</footer>
-				</article>
-			</div>
+			</section>
 
-		<!-- Contact -->
-			<div class="wrapper wrapper-style4">
-				<article id="contact" class="container small">
-					<header>
-						<h2>Want to hire me? Get in touch!</h2>
+		<!-- About -->
+			<section class="wrapper style2">
+				<div class="container" id="about">
+					<header class="major">
+						<h2>About</h2>
+						<p>{{user.about_me}}</p>
 					</header>
-					<div>
-						<div class="row">
-							<div class="12u">
-								<form method="post" action="#">
-									<div>
-										<div class="row half">
-											<div class="6u">
-												<input type="text" name="name" id="name" placeholder="Name" />
-											</div>
-											<div class="6u">
-												<input type="text" name="email" id="email" placeholder="Email" />
-											</div>
-										</div>
-										<div class="row half">
-											<div class="12u">
-												<input type="text" name="subject" id="subject" placeholder="Subject" />
-											</div>
-										</div>
-										<div class="row half">
-											<div class="12u">
-												<textarea name="message" id="message" placeholder="Message"></textarea>
-											</div>
-										</div>
-										<div class="row">
-											<div class="12u">
-												<a href="#" class="button form-button-submit">Send Message</a>
-												<a href="#" class="button button-alt form-button-reset">Clear Form</a>
-											</div>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-						<div class="row">
-							<div class="12u">
-								<hr />
-								<h3>Find me on ...</h3>
-								<ul class="social">
-									<li class="twitter"><a href="http://twitter.com/n33co" class="fa fa-twitter"><span>Twitter</span></a></li>
-									<li class="facebook"><a href="#" class="fa fa-facebook"><span>Facebook</span></a></li>
-									<li class="dribbble"><a href="http://dribbble.com/n33" class="fa fa-dribbble"><span>Dribbble</span></a></li>
-									<li class="linkedin"><a href="#" class="fa fa-linkedin"><span>LinkedIn</span></a></li>
-									<li class="tumblr"><a href="#" class="fa fa-tumblr"><span>Tumblr</span></a></li>
-									<li class="googleplus"><a href="#" class="fa fa-google-plus"><span>Google+</span></a></li>
-									<li class="github"><a href="http://github.com/n33" class="fa fa-github"><span>Github</span></a></li>
-									<!--
-									<li class="rss"><a href="#" class="fa fa-rss"><span>RSS</span></a></li>
-									<li class="instagram"><a href="#" class="fa fa-instagram"><span>Instagram</span></a></li>
-									<li class="foursquare"><a href="#" class="fa fa-foursquare"><span>Foursquare</span></a></li>
-									<li class="skype"><a href="#" class="fa fa-skype"><span>Skype</span></a></li>
-									<li class="soundcloud"><a href="#" class="fa fa-soundcloud"><span>Soundcloud</span></a></li>
-									<li class="youtube"><a href="#" class="fa fa-youtube"><span>YouTube</span></a></li>
-									<li class="blogger"><a href="#" class="fa fa-blogger"><span>Blogger</span></a></li>
-									<li class="flickr"><a href="#" class="fa fa-flickr"><span>Flickr</span></a></li>
-									<li class="vimeo"><a href="#" class="fa fa-vimeo"><span>Vimeo</span></a></li>
-									-->
-								</ul>
-								<hr />
-							</div>
+					<div class="row">
+						<div class="12u">
+							<img style="width: 100%;" src="{{user.best_pic_2}}" alt="" />
 						</div>
 					</div>
 					<footer>
+						<a href="#portfolio" class="button" style="margin: 30px 40%;">look for my Work</a>
+					</footer>
+				</div>
+			</section>
+	<!-- Footer -->
+			<div id="footer">
+				<div class="container">
+					<h2 style="margin: 10px 40%;">Get in Touch</h2>
+					<div class="row">
+						<div class="12u">
+							<form method="post" action="#">
+								<div>
+									<div class="row half">
+										<div class="6u">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="6u">
+											<input type="text" name="email" id="email" placeholder="Email" />
+										</div>
+									</div>
+									<div class="row half">
+										<div class="12u">
+											<input type="text" name="subject" id="subject" placeholder="Subject" />
+										</div>
+									</div>
+									<div class="row half">
+										<div class="12u">
+											<textarea name="message" id="message" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<div class="row">
+										<div style="margin: 10px 35%;" class="6u">
+											<a href="#" class="button form-button-submit">Send Message</a>
+											<a href="#" class="button button-alt form-button-reset">Clear Form</a>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<!-- Icons -->
+					<ul class="icons">
+						<li><a href="http:\\{{user.facebook_id}}" class="fa fa-twitter solo"></a></li>
+						<li><a href="http:\\{{user.twitter_id}}" class="fa fa-facebook solo"></a></li>
+						<li><a href="http:\\{{user.github_id}}" class="fa fa-github solo"></a></li>
+						<li><a href="http:\\{{user.dribbble_id}}" class="fa fa-dribbble solo"></a></li>
+						<li><a href="http:\\{{user.email_address}}" class="fa fa-envelope solo"></a></li>
+					</ul>
+
+				<!-- Copyright -->
+					<footer style="margin-left: 20px;">
 						<ul id="copyright">
 							<li>&copy; 2014 Portobuild</li>
 						</ul>
 					</footer>
-				</article>
+
 			</div>
+
 	</body>
 </html>

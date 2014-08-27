@@ -18,13 +18,13 @@
                 ?>
                 
                 <h2 class="profile-heading"><?php echo $first_name." ".$last_name; ?></h2>
-                <button class="btn btn-primary">View Public Profile</button>
+                <a href="./<?php echo $username; ?>" class="btn btn-primary">View Public Profile</a>
             </div>
 
             <nav id="main-nav">
                 <ul>
                     <li><span class="glyphicon glyphicon-home" ></span><a href="#"> Home</a></li>
-                    <li class="active-admin"><span class="glyphicon glyphicon-picture" ></span><a href="#"> Portfolio</a></li>
+                    <li class="active-admin"><span class="glyphicon glyphicon-picture" ></span><a href="./album"> Portfolio</a></li>
                     <?php if (isset($albums)): ?>
                     <?php foreach ($albums as $album): ?>
                     <div>
@@ -80,7 +80,6 @@
                     </div><!-- /input-group -->
                 </div> <!-- Search Bar Div end -->
                 <div class="pull-left">
-                    <button class="btn btn-default" data-toggle="modal" data-target="#searchFilter">Filter Search</button>
                     <div class="modal fade" id="searchFilter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">

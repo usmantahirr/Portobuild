@@ -20,13 +20,13 @@
                 ?>
                 
                 <h2 class="profile-heading"><?php echo $first_name." ".$last_name; ?></h2>
-        <button class="btn btn-primary">View Public Profile</button>
+                <a href="../../<?php echo $username; ?>" class="btn btn-primary">View Public Profile</a>
       </div>
 
       <nav id="main-nav">
         <ul>
           <li><span class="glyphicon glyphicon-home" ></span><a href="#"> Home</a></li>
-          <li><span class="glyphicon glyphicon-picture" ></span><a href="#"> Portfolio</a></li>
+          <li><span class="glyphicon glyphicon-picture" ></span><a href="../../album"> Portfolio</a></li>
                     <?php if (isset($albums)): ?>
                     <?php foreach ($albums as $album): ?>
           <div>
@@ -188,7 +188,7 @@
           </div>
           <div class="row">
             <div class="col-sm-5 col-sm-offset-3">
-              <input type="file" name="files[]" size="20" />
+              <input type="file" name="files[]" size="20" class="validation[required]" />
               <br /><br />
             </div>
           </div>
@@ -226,7 +226,7 @@
             <div class="col-sm-5 col-sm-offset-3">
             <?php
                 echo form_label('Phone Number', 'phone_number');
-                $att=array('name'=>'phone_number','id'=>'phone_number','type'=>'text','class'=>'form-control','placeholder'=>'Enter your number here...','value'=>$portfolio_details->phone_number);  
+                $att=array('name'=>'phone_number','id'=>'phone_number','type'=>'text','class'=>'form-control validate[required,custom[phone]]','placeholder'=>'Enter your number here...','value'=>$portfolio_details->phone_number);  
                 echo form_input($att);
             ?>
             </div>
@@ -236,7 +236,7 @@
             <div class="col-sm-5 col-sm-offset-3">
             <?php
                 echo form_label('Adrress 1', 'address1');
-                $att=array('name'=>'address1','id'=>'address1','type'=>'text','class'=>'form-control','placeholder'=>'Enter your Permanent address...','rows'=>'2','cols'=>'50','value'=>$portfolio_details->address_1);  
+                $att=array('name'=>'address1','id'=>'address1','type'=>'text','class'=>'form-control validate[required]','placeholder'=>'Enter your Permanent address...','rows'=>'2','cols'=>'50','value'=>$portfolio_details->address_1);  
                 echo form_textarea($att);
             ?>
             </div>
@@ -245,7 +245,7 @@
             <div class="col-sm-5 col-sm-offset-3">
             <?php
                 echo form_label('Adrress 2', 'address2');
-                $att=array('name'=>'address2','id'=>'address1','type'=>'text','class'=>'form-control','placeholder'=>'Enter your current or secondary address...','rows'=>'2','cols'=>'50','value'=>$portfolio_details->address_2);  
+                $att=array('name'=>'address2','id'=>'address2','type'=>'text','class'=>'form-control','placeholder'=>'Enter your current or secondary address...','rows'=>'2','cols'=>'50','value'=>$portfolio_details->address_2);  
                 echo form_textarea($att);
             ?>
             </div>
@@ -254,7 +254,7 @@
             <div class="col-sm-5 col-sm-offset-3">
             <?php
                 echo form_label('Portfolio information', 'Portfolio_info');
-                $att=array('name'=>'Portfolio_info','id'=>'Portfolio_info','type'=>'text','class'=>'form-control','placeholder'=>'Say something about your portfolio','rows'=>'3','cols'=>'50','value'=>$portfolio_details->portfolio_info);  
+                $att=array('name'=>'Portfolio_info','id'=>'Portfolio_info','type'=>'text','class'=>'form-control validate[required]','placeholder'=>'Say something about your portfolio','rows'=>'3','cols'=>'50','value'=>$portfolio_details->portfolio_info);  
                 echo form_textarea($att);
             ?>
             </div>
@@ -268,7 +268,7 @@
             <div class="col-sm-5 col-sm-offset-3">
             <?php
                 echo form_label('Contact information', 'contact_info');
-                $att=array('name'=>'contact_info','id'=>'contact_info','type'=>'text','class'=>'form-control','placeholder'=>'Say something about your Conact','rows'=>'3','cols'=>'50','value'=>$portfolio_details->contact_info);  
+                $att=array('name'=>'contact_info','id'=>'contact_info','type'=>'text','class'=>'form-control validate[required]','placeholder'=>'Say something about your Conact','rows'=>'3','cols'=>'50','value'=>$portfolio_details->contact_info);  
                 echo form_textarea($att);
             ?>
             </div>

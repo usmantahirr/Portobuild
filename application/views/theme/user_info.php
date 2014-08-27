@@ -51,6 +51,9 @@
             <li class="galleries">
                 <a href="<?php echo base_url(); ?>theme/change_theme">Change theme</a>
             </li>
+            <li class="galleries">
+                <a href="<?php echo base_url(); ?>theme/download_zip">Download Zip</a>
+            </li>
           </ul>
         </ul>
       </nav>

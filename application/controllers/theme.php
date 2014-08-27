@@ -323,6 +323,15 @@ class Theme extends MY_Controller
 
     return false;
   }
+  function download_zip(){
+    $this->load->library('zip');
+    $path = './portfolios/'.$this->session->userdata('username').'/';
+
+    $this->zip->read_dir($path); 
+
+    // Download the file to your desktop. Name it "my_backup.zip"
+    $this->zip->download('my_backup.zip');
+  }
   
   
 
